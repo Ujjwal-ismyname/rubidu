@@ -296,3 +296,11 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .get-alt { justify-self: center; color: var(--mute); font-size: 14px; }
 .get-alt:hover { color: var(--ink); }
 @media (max-width: 760px) { .get-row { grid-template-columns: 1fr; } }
+
+/* Links to the accounts (author bio and footer) */
+.author-links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; }
+.author-row .author-links a { margin-top: 0; display: inline-flex; align-items: center; gap: 8px; }
+.author-links .ico, .footer-links .ico { width: 18px; height: 18px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.footer-links a { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); }
