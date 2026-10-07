@@ -21,7 +21,7 @@ document.documentElement.classList.add("js");
   const grid = document.getElementById("categories");
 
   const $ = (id) => document.getElementById(id);
-  const msg = $("message"), email = $("email"), beta = $("beta"), status = $("form-status"), send = $("send");
+  const msg = $("message"), email = $("email"), status = $("form-status"), send = $("send");
   msg.addEventListener("input", () => { $("count").textContent = msg.value.length; });
 
   const show = (id, on, field) => { $(id).hidden = !on; if (field) field.setAttribute("aria-invalid", on ? "true" : "false"); };
@@ -34,13 +34,11 @@ document.documentElement.classList.add("js");
       category: !category,
       message: msg.value.trim().length < 10,
       email: e !== "" && !validEmail(e),
-      beta: !!beta && beta.checked && e === "",
     };
     show("err-category", bad.category);
     show("err-message", bad.message, msg);
     show("err-email", bad.email, email);
-    if (beta) show("err-beta", bad.beta, email);   // no tick-box after launch
-    const first = bad.category ? grid.querySelector("input") : bad.message ? msg : (bad.email || bad.beta) ? email : null;
+    const first = bad.category ? grid.querySelector("input") : bad.message ? msg : bad.email ? email : null;
     if (first) first.focus();
     return !first;
   }
@@ -60,7 +58,6 @@ document.documentElement.classList.add("js");
       message: msg.value.trim(),
       role: $("role").value,
       email: email.value.trim(),
-      beta: beta && beta.checked ? "yes" : "",
       website: $("website").value,   // honeypot: bots fill it, people never see it
       page: location.href.split("#")[0],
     });
