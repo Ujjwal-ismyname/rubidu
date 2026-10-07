@@ -17,10 +17,9 @@
 <meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)">
 <link rel="canonical" href="https://ujjwal-ismyname.github.io/rubidu/">
 <link rel="icon" href="img/mark.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="fonts/HankenGrotesk.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/BricolageGrotesque.woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Rubidu", "url": "https://ujjwal-ismyname.github.io/rubidu/", "description": "Rubidu is a private, local-first voice assistant for macOS, built by a student."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ujjwal", "jobTitle": "Computer science student", "description": "Final-year computer science student building Rubidu.", "sameAs": ["https://www.instagram.com/heyrubidu/", "https://www.youtube.com/@heyrubidu"]}</script>
@@ -252,7 +251,7 @@
         <li><svg class="ico" aria-hidden="true"><use href="#i-bug"/></svg>What should I test before I launch?</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-megaphone"/></svg>How would you get something like this in front of people?</li>
       </ul>
-      <p class="fine">I read every message. Each one is filed under its topic in a private Google Sheet that only I can open. Your email is optional and only used to reply to you.</p>
+      <p class="fine">I read every message. Each one is filed under its topic in a private Google Sheet that only I can open. Your email is optional and only used to reply to you. <a href="privacy.html">How your message is handled</a>.</p>
     </div>
 
     <form class="fb-form reveal" id="fb-form" novalidate>
@@ -302,6 +301,7 @@
 
       <button class="btn btn-primary btn-block" type="submit" id="send">Send feedback</button>
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      <p class="fine form-legal">By sending, you agree to the <a href="privacy.html">privacy notice</a>. Under 18? Please leave your email out.</p>
     </form>
   </div>
 </section>
@@ -311,7 +311,7 @@
 <footer class="footer">
   <div class="wrap footer-row">
     <div class="brand"><img src="img/mark.svg" alt="" width="34" height="17" class="brand-mark"><span>Rubidu</span></div>
-    <p>Made on a MacBook Air by a student. Rubidu runs on open, commercially licensed AI models, entirely on your Mac.</p>
+    <p>Made on a MacBook Air by a student. Rubidu runs on open, commercially licensed AI models, entirely on your Mac.<br><span class="legal">Mac and Siri are trademarks of Apple Inc. Rubidu is an independent project, not affiliated with Apple, Anthropic or OpenAI. · <a href="privacy.html">Privacy</a></span></p>
     <nav class="footer-links" aria-label="Rubidu elsewhere"><a href="https://www.instagram.com/heyrubidu/" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a><a href="https://www.youtube.com/@heyrubidu" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a></nav>
   </div>
 </footer>

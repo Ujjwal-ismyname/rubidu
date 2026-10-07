@@ -1,5 +1,5 @@
 // The Rubidu mark (two rings and a smile), drawn in 3D from simple shapes.
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js";
+import * as THREE from "./vendor/three.module.min.js"; // self-hosted (MIT): no visitor data to a CDN
 
 const U = 1 / 100;            // one SVG unit in scene units
 const CX = 232.5, CY = 111;   // centre of the mark in SVG space
