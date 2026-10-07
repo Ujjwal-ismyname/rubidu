@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ujjwal-ismyname.github.io/rubidu/sitemap.xml

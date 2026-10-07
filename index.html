@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rubidu: a private, offline AI voice assistant for Mac</title>
+<meta name="description" content="Rubidu is a private AI voice assistant that runs entirely on your Mac, even offline. It hears you, speaks in a voice you choose, and gets things done.">
+<meta property="og:title" content="Rubidu: a private, offline AI voice assistant for Mac">
+<meta property="og:description" content="A private, local-first voice assistant for macOS. Help shape it before launch.">
+<meta property="og:image" content="https://ujjwal-ismyname.github.io/rubidu/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ujjwal-ismyname.github.io/rubidu/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://ujjwal-ismyname.github.io/rubidu/">
+<link rel="icon" href="img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Rubidu", "url": "https://ujjwal-ismyname.github.io/rubidu/", "description": "Rubidu is a private, local-first voice assistant for macOS, built by a student."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ujjwal", "jobTitle": "Computer science student", "description": "Final-year computer science student building Rubidu.", "sameAs": ["https://www.instagram.com/heyrubidu/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Rubidu?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: opening apps, timers and reminders, music and volume, web searches, and reading your screen when you ask."}}, {"@type": "Question", "name": "Does Rubidu send my voice or data to the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download in Setup, Rubidu works with no internet connection."}}, {"@type": "Question", "name": "Can Rubidu speak in my own voice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like."}}, {"@type": "Question", "name": "Which Macs does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory."}}, {"@type": "Question", "name": "Is there a Windows version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A Windows version is planned after the Mac launch."}}, {"@type": "Question", "name": "When can I try it?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is coming soon. Tick “I'd like to test the beta” in the feedback form on this page and you will hear first."}}]}</script>
+<script>(function(){var t=new URLSearchParams(location.search).get("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-brain" viewBox="0 0 256 256"><path d="M248,124a56.11,56.11,0,0,0-32-50.61V72a48,48,0,0,0-88-26.49A48,48,0,0,0,40,72v1.39a56,56,0,0,0,0,101.2V176a48,48,0,0,0,88,26.49A48,48,0,0,0,216,176v-1.41A56.09,56.09,0,0,0,248,124ZM88,208a32,32,0,0,1-31.81-28.56A55.87,55.87,0,0,0,64,180h8a8,8,0,0,0,0-16H64A40,40,0,0,1,50.67,86.27,8,8,0,0,0,56,78.73V72a32,32,0,0,1,64,0v68.26A47.8,47.8,0,0,0,88,128a8,8,0,0,0,0,16,32,32,0,0,1,0,64Zm104-44h-8a8,8,0,0,0,0,16h8a55.87,55.87,0,0,0,7.81-.56A32,32,0,1,1,168,144a8,8,0,0,0,0-16,47.8,47.8,0,0,0-32,12.26V72a32,32,0,0,1,64,0v6.73a8,8,0,0,0,5.33,7.54A40,40,0,0,1,192,164Zm16-52a8,8,0,0,1-8,8h-4a36,36,0,0,1-36-36V80a8,8,0,0,1,16,0v4a20,20,0,0,0,20,20h4A8,8,0,0,1,208,112ZM60,120H56a8,8,0,0,1,0-16h4A20,20,0,0,0,80,84V80a8,8,0,0,1,16,0v4A36,36,0,0,1,60,120Z"/></symbol><symbol id="i-bug" viewBox="0 0 256 256"><path d="M144,92a12,12,0,1,1,12,12A12,12,0,0,1,144,92ZM100,80a12,12,0,1,0,12,12A12,12,0,0,0,100,80Zm116,64A87.76,87.76,0,0,1,213,167l22.24,9.72A8,8,0,0,1,232,192a7.89,7.89,0,0,1-3.2-.67L207.38,182a88,88,0,0,1-158.76,0L27.2,191.33A7.89,7.89,0,0,1,24,192a8,8,0,0,1-3.2-15.33L43,167A87.76,87.76,0,0,1,40,144v-8H16a8,8,0,0,1,0-16H40v-8a87.76,87.76,0,0,1,3-23L20.8,79.33a8,8,0,1,1,6.4-14.66L48.62,74a88,88,0,0,1,158.76,0l21.42-9.36a8,8,0,0,1,6.4,14.66L213,89.05a87.76,87.76,0,0,1,3,23v8h24a8,8,0,0,1,0,16H216ZM56,120H200v-8a72,72,0,0,0-144,0Zm64,95.54V136H56v8A72.08,72.08,0,0,0,120,215.54ZM200,144v-8H136v79.54A72.08,72.08,0,0,0,200,144Z"/></symbol><symbol id="i-caret" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol><symbol id="i-chat-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol><symbol id="i-ear" viewBox="0 0 256 256"><path d="M216,104a8,8,0,0,1-16,0,72,72,0,0,0-144,0c0,26.7,8.53,34.92,17.57,43.64C82.21,156,92,165.41,92,188a36,36,0,0,0,36,36c10.24,0,18.45-4.16,25.83-13.09a8,8,0,1,1,12.34,10.18C155.81,233.64,143,240,128,240a52.06,52.06,0,0,1-52-52c0-15.79-5.68-21.27-13.54-28.84C52.46,149.5,40,137.5,40,104a88,88,0,0,1,176,0Zm-38.13,57.08A8,8,0,0,0,166.93,164,8,8,0,0,1,152,160c0-9.33,4.82-15.76,10.4-23.2,6.37-8.5,13.6-18.13,13.6-32.8a48,48,0,0,0-96,0,8,8,0,0,0,16,0,32,32,0,0,1,64,0c0,9.33-4.82,15.76-10.4,23.2-6.37,8.5-13.6,18.13-13.6,32.8a24,24,0,0,0,44.78,12A8,8,0,0,0,177.87,161.08Z"/></symbol><symbol id="i-gauge" viewBox="0 0 256 256"><path d="M207.06,72.67A111.24,111.24,0,0,0,128,40h-.4C66.07,40.21,16,91,16,153.13V176a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V152A111.25,111.25,0,0,0,207.06,72.67ZM224,176H119.71l54.76-75.3a8,8,0,0,0-12.94-9.42L99.92,176H32V153.13c0-3.08.15-6.12.43-9.13H56a8,8,0,0,0,0-16H35.27c10.32-38.86,44-68.24,84.73-71.66V80a8,8,0,0,0,16,0V56.33A96.14,96.14,0,0,1,221,128H200a8,8,0,0,0,0,16h23.67c.21,2.65.33,5.31.33,8Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></symbol><symbol id="i-lock" viewBox="0 0 256 256"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"/></symbol><symbol id="i-megaphone" viewBox="0 0 256 256"><path d="M248,120a48.05,48.05,0,0,0-48-48H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48.07,48.07,0,0,0,248,120ZM48,199.93V40h0c42.81,35.91,86.63,45,104,47.24v65.48C134.65,155,90.84,164.07,48,199.93Zm131,8,0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z"/></symbol><symbol id="i-microphone" viewBox="0 0 256 256"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V240a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></symbol><symbol id="i-paint-brush" viewBox="0 0 256 256"><path d="M232,32a8,8,0,0,0-8-8c-44.08,0-89.31,49.71-114.43,82.63A60,60,0,0,0,32,164c0,30.88-19.54,44.73-20.47,45.37A8,8,0,0,0,16,224H92a60,60,0,0,0,57.37-77.57C182.3,121.31,232,76.08,232,32ZM92,208H34.63C41.38,198.41,48,183.92,48,164a44,44,0,1,1,44,44Zm32.42-94.45q5.14-6.66,10.09-12.55A76.23,76.23,0,0,1,155,121.49q-5.9,4.94-12.55,10.09A60.54,60.54,0,0,0,124.42,113.55Zm42.7-2.68a92.57,92.57,0,0,0-22-22c31.78-34.53,55.75-45,69.9-47.91C212.17,55.12,201.65,79.09,167.12,110.87Z"/></symbol><symbol id="i-shield-check" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol><symbol id="i-sparkle" viewBox="0 0 256 256"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol><symbol id="i-speaker-high" viewBox="0 0 256 256"><path d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67,64,64,0,0,0,0-85.33,8,8,0,1,1,11.92-10.67A79.83,79.83,0,0,1,248,128Z"/></symbol><symbol id="i-tag" viewBox="0 0 256 256"><path d="M243.31,136,144,36.69A15.86,15.86,0,0,0,132.69,32H40a8,8,0,0,0-8,8v92.69A15.86,15.86,0,0,0,36.69,144L136,243.31a16,16,0,0,0,22.63,0l84.68-84.68a16,16,0,0,0,0-22.63Zm-96,96L48,132.69V48h84.69L232,147.31ZM96,84A12,12,0,1,1,84,72,12,12,0,0,1,96,84Z"/></symbol><symbol id="i-translate" viewBox="0 0 256 256"><path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,108,126.93,103.65,103.65,0,0,0,135.69,64H160a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H32a8,8,0,0,0,0,16h87.63A87.76,87.76,0,0,1,96,116.35a87.74,87.74,0,0,1-19-31,8,8,0,1,0-15.08,5.34A103.63,103.63,0,0,0,84,127a87.55,87.55,0,0,1-52,17,8,8,0,0,0,0,16,103.46,103.46,0,0,0,64-22.08,104.18,104.18,0,0,0,51.44,21.31l-26.6,53.19a8,8,0,0,0,14.31,7.16L148.94,192h70.11l13.79,27.58A8,8,0,0,0,240,224a8,8,0,0,0,7.15-11.58ZM156.94,176,184,121.89,211.05,176Z"/></symbol><symbol id="i-waveform" viewBox="0 0 256 256"><path d="M56,96v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0ZM88,24a8,8,0,0,0-8,8V224a8,8,0,0,0,16,0V32A8,8,0,0,0,88,24Zm40,32a8,8,0,0,0-8,8V192a8,8,0,0,0,16,0V64A8,8,0,0,0,128,56Zm40,32a8,8,0,0,0-8,8v64a8,8,0,0,0,16,0V96A8,8,0,0,0,168,88Zm40-16a8,8,0,0,0-8,8v96a8,8,0,0,0,16,0V80A8,8,0,0,0,208,72Z"/></symbol><symbol id="i-windows-logo" viewBox="0 0 256 256"><path d="M208,136H128a8,8,0,0,0-8,8v57.45a8,8,0,0,0,6.57,7.88l80,14.54A7.61,7.61,0,0,0,208,224a8,8,0,0,0,8-8V144A8,8,0,0,0,208,136Zm-8,70.41-64-11.63V152h64ZM96,136H32a8,8,0,0,0-8,8v40a8,8,0,0,0,6.57,7.87l64,11.64a8.54,8.54,0,0,0,1.43.13,8,8,0,0,0,8-8V144A8,8,0,0,0,96,136Zm-8,50.05-48-8.73V152H88ZM213.13,33.86a8,8,0,0,0-6.56-1.73l-80,14.55A8,8,0,0,0,120,54.55V112a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V40A8,8,0,0,0,213.13,33.86ZM200,104H136V61.22l64-11.63ZM101.13,54.22a8,8,0,0,0-6.56-1.73l-64,11.64A8,8,0,0,0,24,72v40a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V60.36A8,8,0,0,0,101.13,54.22ZM88,104H40V78.68L88,70Z"/></symbol></svg>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="Rubidu home">
+      <img src="img/mark.svg" alt="" width="34" height="17" class="brand-mark">
+      <span>Rubidu</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#app">The app</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#inside">How it works</a>
+      <a href="#status">Not done yet</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#feedback">Share feedback</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <h1>An AI voice buddy that lives on your Mac.</h1>
+      <p class="lede">It hears you, answers in a voice you choose, and gets things done. Nothing leaves your Mac. Coming soon.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#feedback">Share feedback</a>
+        <a class="btn btn-ghost" href="#app">See the app</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img class="mark-fallback" src="img/mark.svg" alt="" width="465" height="231">
+      <canvas id="mark3d"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="shots" id="app" aria-labelledby="app-h">
+  <div class="wrap">
+    <h2 id="app-h" class="reveal">This is the real app.</h2>
+    <p class="section-sub reveal">Every picture on this page is a window from the current build, captured as it is.</p>
+    <div class="collage">
+      <figure class="shot shot-main reveal">
+        <img src="img/settings-voice.webp" width="980" height="728" loading="lazy"
+             alt="Rubidu Settings, Voice page: the built-in voice Alba is in use, with a script to read aloud to record your own voice.">
+      </figure>
+      <figure class="shot shot-setup reveal">
+        <img src="img/setup-0.webp" width="760" height="798" loading="lazy"
+             alt="The Rubidu setup wizard, step 1 of 9: Meet Rubidu. Private by design, it does real things, careful by default.">
+      </figure>
+      <figure class="shot shot-type reveal">
+        <img src="img/type.webp" width="720" height="448" loading="lazy"
+             alt="The Message for Rubidu window with the request: remind me to call mom at 7.">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="story" aria-labelledby="story-h">
+  <div class="wrap narrow">
+    <h2 id="story-h" class="reveal">Why I'm building it</h2>
+    <div class="story-body reveal">
+      <p>Every day I use a Mac, and every day Siri sits there feeling outdated. It is slow, it can't do much, and it never feels like it knows <em>me</em>. Meanwhile the models from Anthropic, OpenAI and the open-source community keep getting better.</p>
+      <p>So I wanted my own little Jarvis. Not another assistant that sends everything I say to a cloud, but something local, private and personal.</p>
+      <p>I dug into small open models that run on a laptop, voice AI and Mac automation, and decided to build it myself, with Claude, YouTube and far too many tabs. That became Rubidu.</p>
+    </div>
+    <p class="signoff reveal">Ujjwal, student, and the one person building Rubidu</p>
+  </div>
+</section>
+
+<section class="does" aria-labelledby="does-h">
+  <div class="wrap">
+    <h2 id="does-h" class="reveal">What it does today</h2>
+    <div class="bento">
+      <article class="cell cell-talk reveal">
+        <svg class="ico" aria-hidden="true"><use href="#i-microphone"/></svg>
+        <h3>Talk to it, hands free</h3>
+        <p>Say its name, or hold <kbd>⌘</kbd> <kbd>⌥</kbd> and talk. Tap twice and it keeps listening until you tap again.</p>
+        <img src="img/settings-listening.webp" width="980" height="384" loading="lazy"
+             alt="Settings, Listening page with the wake word and push-to-talk options.">
+      </article>
+      <article class="cell cell-voice reveal">
+        <svg class="ico" aria-hidden="true"><use href="#i-waveform"/></svg>
+        <h3>It can speak in your voice</h3>
+        <p>Read a short script aloud. Rubidu keeps the clearest 30 seconds and clones the voice on your Mac. It is never uploaded.</p>
+      </article>
+      <article class="cell cell-lang reveal">
+        <svg class="ico" aria-hidden="true"><use href="#i-translate"/></svg>
+        <h3>33 languages, Hinglish included</h3>
+        <p>English, Hinglish and Hindi are measured. About thirty more are selectable.</p>
+      </article>
+      <article class="cell cell-acts reveal">
+        <svg class="ico" aria-hidden="true"><use href="#i-lightning"/></svg>
+        <h3>It does real things</h3>
+        <ul class="chips" aria-label="Examples">
+          <li>Open and quit apps</li><li>Timers and reminders</li><li>Volume and brightness</li>
+          <li>Play and pause music</li><li>Search the web</li><li>Read your screen, when asked</li>
+          <li>Notes and lists</li><li>Exact maths and units</li>
+        </ul>
+      </article>
+      <article class="cell cell-safe reveal">
+        <svg class="ico" aria-hidden="true"><use href="#i-shield-check"/></svg>
+        <h3>Careful by default</h3>
+        <p>Anything risky waits for your yes, and everything it does is listed for you to see. It cannot run shell commands or delete your files.</p>
+        <img src="img/settings-privacy.webp" width="980" height="728" loading="lazy"
+             alt="Settings, Privacy page.">
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="numbers" id="numbers" aria-labelledby="num-h">
+  <div class="wrap">
+    <h2 id="num-h" class="reveal">Measured, not promised</h2>
+    <dl class="stats">
+      <div class="stat reveal"><dt>network requests by default</dt><dd class="num">0</dd><dd class="note">No account, no telemetry. Models download once, when you press the button.</dd></div>
+      <div class="stat reveal"><dt>from text to the first spoken word</dt><dd class="num">0.16<span>s</span></dd><dd class="note">Generated on the Mac's own chip, not a server.</dd></div>
+      <div class="stat reveal"><dt>median time for the AI to answer a request</dt><dd class="num">0.45<span>s</span></dd><dd class="note">On a quiet Mac. About 0.9 s while other apps are busy.</dd></div>
+      <div class="stat reveal"><dt>peak memory of the language model</dt><dd class="num">1.76<span>GB</span></dd><dd class="note">Small enough to stay open all day on a 16 GB Mac.</dd></div>
+      <div class="stat reveal"><dt>installer download</dt><dd class="num">184<span>MB</span></dd><dd class="note">Plus about 1.3 GB of models, fetched once in Setup.</dd></div>
+      <div class="stat reveal"><dt>automated tests before every build</dt><dd class="num">3,406</dd><dd class="note">Every one passes, or nothing ships.</dd></div>
+    </dl>
+    <p class="footnote reveal">Measured on one MacBook Air (M2, 16 GB, macOS 27), the only Mac Rubidu has run on so far.</p>
+  </div>
+</section>
+
+<section class="inside" id="inside" aria-labelledby="inside-h">
+  <div class="wrap">
+    <h2 id="inside-h" class="reveal">What happens when you speak</h2>
+    <ol class="flow">
+      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-ear"/></svg></span><h3>It hears</h3><p>Your voice becomes text on your Mac. The audio is never uploaded.</p></li>
+      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-brain"/></svg></span><h3>It understands</h3><p>It works out what you mean, with the last few things you said as context.</p></li>
+      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"/></svg></span><h3>It checks</h3><p>Before acting, it makes sure the action is allowed. Risky ones wait for your yes.</p></li>
+      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-lightning"/></svg></span><h3>It acts</h3><p>Through the Mac's own controls, the same ones you would use.</p></li>
+      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-speaker-high"/></svg></span><h3>It speaks</h3><p>In the built-in voice, or in yours.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="status" id="status" aria-labelledby="status-h">
+  <div class="wrap">
+    <h2 id="status-h" class="reveal">Not done yet</h2>
+    <p class="section-sub reveal">Better you hear it from me than find it out yourself.</p>
+    <div class="todo">
+      <div class="todo-group reveal">
+        <h3>Where it has run</h3>
+        <ul>
+          <li>Only on my MacBook Air (M2, 16 GB). 8 GB Macs and Intel Macs are untested.</li>
+          <li>It needs Apple silicon and macOS 26.3 or later.</li>
+          <li>No Windows version yet. That needs a Windows PC, which in this economy of RAM and SSD prices is a whole project of its own.</li>
+        </ul>
+      </div>
+      <div class="todo-group reveal">
+        <h3>Rough edges</h3>
+        <ul>
+          <li>It is signed by me, not notarized by Apple, so the first open goes through Privacy &amp; Security, then Open Anyway.</li>
+          <li>Short commands in a strong accent are the hardest to hear. It asks "Did you mean…?" when unsure.</li>
+          <li>Its windows are not fully readable by VoiceOver yet.</li>
+          <li>It cannot read your email or your notes aloud yet.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <div class="wrap narrow">
+    <h2 id="faq-h" class="reveal">Questions</h2>
+    <div class="qas">
+      <details class="qa reveal">
+        <summary><h3>What is Rubidu?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: opening apps, timers and reminders, music and volume, web searches, and reading your screen when you ask.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>Does Rubidu send my voice or data to the cloud?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>Does it work offline?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Yes. After the one-time model download in Setup, Rubidu works with no internet connection.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>Can Rubidu speak in my own voice?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>Which Macs does it run on?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>Is there a Windows version?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Not yet. A Windows version is planned after the Mac launch.</p>
+      </details>
+      <details class="qa reveal">
+        <summary><h3>When can I try it?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <p>Rubidu is coming soon. Tick “I'd like to test the beta” in the feedback form on this page and you will hear first.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="author" aria-labelledby="author-h">
+  <div class="wrap narrow author-row reveal">
+    <img src="img/mark.svg" alt="" width="96" height="48" class="author-mark">
+    <div>
+      <h2 id="author-h">Who is building it</h2>
+      <p>I'm Ujjwal, a final-year computer science student. I'm building Rubidu on my own, on a MacBook Air, in public. I post the progress, the wins and the bugs on Instagram.</p>
+      <a href="https://www.instagram.com/heyrubidu/" rel="noopener me">@heyrubidu on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section class="feedback" id="feedback" aria-labelledby="fb-h">
+  <div class="wrap fb-grid">
+    <div class="fb-intro reveal">
+      <h2 id="fb-h">Help me build it.</h2>
+      <p>You're a developer, a Mac user, a designer, a marketer, or just curious. Tell me what I'm missing before launch.</p>
+      <ul class="prompts">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg>What would you want your own AI buddy to do?</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-bug"/></svg>What should I test before I launch?</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-megaphone"/></svg>How would you get something like this in front of people?</li>
+      </ul>
+      <p class="fine">I read every message. Each one is filed under its topic in a private Google Sheet that only I can open. Your email is optional and only used to reply or invite you to the beta.</p>
+    </div>
+
+    <form class="fb-form reveal" id="fb-form" novalidate>
+      <fieldset class="field">
+        <legend>What is it about?</legend>
+        <div class="choice-grid" id="categories">
+          <label class="choice"><input type="radio" name="category" value="feature"><span><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg>A feature I&#x27;d want</span></label>
+          <label class="choice"><input type="radio" name="category" value="testing"><span><svg class="ico" aria-hidden="true"><use href="#i-bug"/></svg>Test this before launch</span></label>
+          <label class="choice"><input type="radio" name="category" value="design"><span><svg class="ico" aria-hidden="true"><use href="#i-paint-brush"/></svg>Design and ease of use</span></label>
+          <label class="choice"><input type="radio" name="category" value="voice"><span><svg class="ico" aria-hidden="true"><use href="#i-waveform"/></svg>Voice and speech</span></label>
+          <label class="choice"><input type="radio" name="category" value="privacy"><span><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>Privacy and security</span></label>
+          <label class="choice"><input type="radio" name="category" value="performance"><span><svg class="ico" aria-hidden="true"><use href="#i-gauge"/></svg>Speed, battery, memory</span></label>
+          <label class="choice"><input type="radio" name="category" value="pricing"><span><svg class="ico" aria-hidden="true"><use href="#i-tag"/></svg>Pricing</span></label>
+          <label class="choice"><input type="radio" name="category" value="marketing"><span><svg class="ico" aria-hidden="true"><use href="#i-megaphone"/></svg>Reaching people</span></label>
+          <label class="choice"><input type="radio" name="category" value="windows"><span><svg class="ico" aria-hidden="true"><use href="#i-windows-logo"/></svg>Windows version</span></label>
+          <label class="choice"><input type="radio" name="category" value="other"><span><svg class="ico" aria-hidden="true"><use href="#i-chat-circle"/></svg>Something else</span></label>
+        </div>
+        <p class="error" id="err-category" hidden>Pick a topic.</p>
+      </fieldset>
+
+      <div class="field">
+        <label for="message">Your idea, bug or advice</label>
+        <textarea id="message" name="message" rows="6" maxlength="4000" required
+                  aria-describedby="message-help err-message"></textarea>
+        <p class="help" id="message-help"><span id="count">0</span> / 4000</p>
+        <p class="error" id="err-message" hidden>Write at least a sentence (10 characters).</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="role">You are</label>
+          <select id="role" name="role">
+            <option value="">Prefer not to say</option>
+            <option>Mac user</option><option>Developer</option><option>Designer</option>
+            <option>Marketer</option><option>Student</option><option>Investor</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="opt">(optional)</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" maxlength="200" aria-describedby="err-email">
+          <p class="error" id="err-email" hidden>That email doesn't look right.</p>
+        </div>
+      </div>
+
+      <label class="check"><input type="checkbox" name="beta" id="beta"> I'd like to test the beta on my Mac</label>
+      <p class="error" id="err-beta" hidden>Add your email so I can send you the beta.</p>
+
+      <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+      <button class="btn btn-primary btn-block" type="submit" id="send">Send feedback</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div class="brand"><img src="img/mark.svg" alt="" width="34" height="17" class="brand-mark"><span>Rubidu</span></div>
+    <p>Made on a MacBook Air by a student. Rubidu runs on open, commercially licensed AI models, entirely on your Mac.</p>
+    <a href="https://www.instagram.com/heyrubidu/" rel="noopener">Follow the build on Instagram</a>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/site.js" defer></script>
+<script type="module">
+  const canvas = document.getElementById("mark3d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const start = () => import("./js/mark3d.js")
+    .then((m) => { m.mountMark(canvas, { reducedMotion: reduce }); document.querySelector(".mark-fallback")?.remove(); })
+    .catch(() => { canvas.remove(); });   // no WebGL: the flat mark stays
+  ("requestIdleCallback" in window) ? requestIdleCallback(start, { timeout: 1200 }) : setTimeout(start, 300);
+</script>
+</body>
+</html>
