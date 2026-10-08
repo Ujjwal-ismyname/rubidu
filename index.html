@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ujjwal-ismyname.github.io/rubidu/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1014" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6f8" media="(prefers-color-scheme: light)">
 <link rel="canonical" href="https://ujjwal-ismyname.github.io/rubidu/">
 <link rel="icon" href="img/mark.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="fonts/HankenGrotesk.woff2" crossorigin>
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Rubidu", "url": "https://ujjwal-ismyname.github.io/rubidu/", "description": "Rubidu is a private, local-first voice assistant for macOS, built by a student."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ujjwal", "jobTitle": "Computer science student", "description": "Final-year computer science student building Rubidu.", "sameAs": ["https://www.instagram.com/heyrubidu/", "https://www.youtube.com/@heyrubidu"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Rubidu?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: opening apps, timers and reminders, music and volume, web searches, and reading your screen when you ask."}}, {"@type": "Question", "name": "Does Rubidu send my voice or data to the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download in Setup, Rubidu works with no internet connection."}}, {"@type": "Question", "name": "Can Rubidu speak in my own voice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like."}}, {"@type": "Question", "name": "Which Macs does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory."}}, {"@type": "Question", "name": "Is there a Windows version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A Windows version is planned after the Mac launch."}}, {"@type": "Question", "name": "When can I try it?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is coming soon. Follow @heyrubidu on [Instagram](https://www.instagram.com/heyrubidu/) or [YouTube](https://www.youtube.com/@heyrubidu) to hear the moment it launches."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Rubidu?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: apps, timers and reminders, music and volume, messages, dictation into any app, transcribing recordings and reading text aloud."}}, {"@type": "Question", "name": "Does Rubidu send my voice or data to the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download in Setup, Rubidu works with no internet connection."}}, {"@type": "Question", "name": "Can Rubidu speak in my own voice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like."}}, {"@type": "Question", "name": "Which Macs does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory."}}, {"@type": "Question", "name": "Is there a Windows version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A Windows version is planned after the Mac launch."}}, {"@type": "Question", "name": "When can I try it?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is coming soon. Follow @heyrubidu on [Instagram](https://www.instagram.com/heyrubidu/) or [YouTube](https://www.youtube.com/@heyrubidu) to hear the moment it launches."}}]}</script>
 <script>(function(){var t=new URLSearchParams(location.search).get("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;})();</script>
 </head>
 <body>
@@ -32,14 +32,10 @@
 
 <header class="nav">
   <div class="wrap nav-row">
-    <a class="brand" href="#top" aria-label="Rubidu home">
-      <img src="img/mark.svg" alt="" width="34" height="17" class="brand-mark">
-      <span>Rubidu</span>
-    </a>
+    <a class="brand" href="#top" aria-label="Rubidu home"><span class="brand-face" aria-hidden="true">○‿○</span><span>rubidu</span></a>
     <nav aria-label="Sections">
-      <a href="#app">The app</a>
-      <a href="#numbers">Numbers</a>
-      <a href="#inside">How it works</a>
+      <a href="#app">What it does</a>
+      <a href="#plugins">Plugins</a>
       <a href="#status">Not done yet</a>
       <a href="#faq">Questions</a>
     </nav>
@@ -52,89 +48,120 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-      <h1>An AI voice buddy that lives on your Mac.</h1>
-      <p class="lede">It hears you, answers in a voice you choose, and gets things done. Nothing leaves your Mac. Coming soon.</p>
+      <h1>A tiny face in your menu bar that does what you say.</h1>
+      <p class="lede">Talk to your Mac. It answers in your voice, and nothing you say leaves it. Coming soon.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#feedback">Share feedback</a>
         <a class="btn btn-ghost" href="#app">See the app</a>
       </div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <img class="mark-fallback" src="img/mark.svg" alt="" width="465" height="231">
-      <canvas id="mark3d"></canvas>
+    <div class="hero-visual">
+      <button class="face-btn" type="button" aria-label="Rubidu's face. Click it.">
+        <svg class="face" viewBox="0 0 465 231" aria-hidden="true">
+          <g class="eye" data-cx="111"><circle class="ring" cx="111" cy="111" r="75"/><circle class="pupil" cx="111" cy="111" r="24"/></g>
+          <g class="eye" data-cx="354"><circle class="ring" cx="354" cy="111" r="75"/><circle class="pupil" cx="354" cy="111" r="24"/></g>
+          <path class="smile" d="M199 166 Q232.5 213 266 166"/>
+        </svg>
+      </button>
+      <p class="bubble" aria-live="polite"><span class="who">you</span><span class="line">mujhe ek joke sunao</span></p>
     </div>
   </div>
+  <div class="say" aria-label="Things people say to Rubidu"><ul class="say-track"><li>set a timer for 10 minutes</li><li>spotify kholo</li><li>read this to me</li><li>find my resume pdf</li><li>good morning</li><li>remind me to call mom at 7</li><li>volume kam karo</li><li>transcribe this</li><li>what's 18% of 2340</li><li>open safari and search for flights to goa</li><li>mujhe ek joke sunao</li><li>turn on dark mode</li><li>text dad I'm on my way</li><li>stop</li></ul><ul class="say-track" aria-hidden="true"><li>set a timer for 10 minutes</li><li>spotify kholo</li><li>read this to me</li><li>find my resume pdf</li><li>good morning</li><li>remind me to call mom at 7</li><li>volume kam karo</li><li>transcribe this</li><li>what's 18% of 2340</li><li>open safari and search for flights to goa</li><li>mujhe ek joke sunao</li><li>turn on dark mode</li><li>text dad I'm on my way</li><li>stop</li></ul></div>
 </section>
 
-<section class="shots" id="app" aria-labelledby="app-h">
+<section class="jobs" id="app" aria-labelledby="app-h">
   <div class="wrap">
-    <h2 id="app-h" class="reveal">This is the real app.</h2>
-    <p class="section-sub reveal">Every picture on this page is a window from the current build, captured as it is.</p>
-    <div class="collage">
-      <figure class="shot shot-main reveal">
-        <img src="img/settings-voice.webp" width="980" height="728" loading="lazy"
-             alt="Rubidu Settings, Voice page: the built-in voice Alba is in use, with a script to read aloud to record your own voice.">
-      </figure>
-      <figure class="shot shot-setup reveal">
-        <img src="img/setup-0.webp" width="760" height="798" loading="lazy"
-             alt="The Rubidu setup wizard, step 1 of 9: Meet Rubidu. Private by design, it does real things, careful by default.">
-      </figure>
-      <figure class="shot shot-type reveal">
-        <img src="img/type.webp" width="720" height="448" loading="lazy"
-             alt="The Message for Rubidu window with the request: remind me to call mom at 7.">
-      </figure>
+    <h2 id="app-h" class="reveal">Four things you'd otherwise pay four apps for</h2>
+    <div class="job-grid">
+      <article class="job job-1 reveal">
+        <h3>Talk, and it does it</h3>
+        <p>Apps, timers, music, volume, messages, your calendar. Say it in English or Hinglish, or hold <kbd>⌘</kbd> <kbd>⌥</kbd> and talk.</p>
+        <div class="job-visual"><img src="img/heard.png" loading="lazy" alt="The Mac menu bar with Rubidu&#x27;s face and a bubble: I heard you say, are you excited about your teaser launch today."></div>
+      </article>
+      <article class="job job-2 reveal">
+        <h3>Type with your voice, anywhere</h3>
+        <p>Hold <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⇧</kbd> in any app and talk. The ums are gone before the words land.</p>
+        <div class="job-visual"><img src="img/type.webp" loading="lazy" alt="The Message for Rubidu window with the request: remind me to call mom at 7."></div>
+      </article>
+      <article class="job job-3 reveal">
+        <h3>Turn recordings into text</h3>
+        <p>Pick a voice memo or a video, or just say "transcribe this". A transcript and subtitles appear next to it, made on your Mac.</p>
+        <div class="job-visual"><blockquote class="transcript"><p>Hey everyone, every day we open our Mac and we see Siri sitting right over there...</p><footer>A 77 second voice memo, transcribed in 3.3 seconds.</footer></blockquote></div>
+      </article>
+      <article class="job job-4 reveal">
+        <h3>Hear anything, in your own voice</h3>
+        <p>Select text anywhere and say "read this to me". Record a minute of yourself once and Rubidu can read in your voice.</p>
+        <div class="job-visual"><img src="img/settings-voice.webp" loading="lazy" alt="Rubidu Settings, Voice page, with a script to read aloud to record your own voice."></div>
+      </article>
+      <article class="job job-more reveal">
+        <h3>And the small stuff</h3>
+        <ul class="chips"><li>Find any file</li><li>Good morning briefing</li><li>Exact maths and units</li><li>Notes and lists</li><li>Dark mode, Wi-Fi, brightness</li><li>Stop by saying stop</li></ul>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="story" aria-labelledby="story-h">
-  <div class="wrap narrow">
-    <h2 id="story-h" class="reveal">Why I'm building it</h2>
-    <div class="story-body reveal">
-      <p>Every day I use a Mac, and every day Siri sits there feeling outdated. It is slow, it can't do much, and it never feels like it knows <em>me</em>. Meanwhile the models from Anthropic, OpenAI and the open-source community keep getting better.</p>
-      <p>So I wanted my own little Jarvis. Not another assistant that sends everything I say to a cloud, but something local, private and personal.</p>
-      <p>I dug into small open models that run on a laptop, voice AI and Mac automation, and decided to build it myself, with Claude, YouTube and far too many tabs. That became Rubidu.</p>
+<section class="faces" aria-labelledby="faces-h">
+  <div class="wrap faces-row">
+    <div class="reveal">
+      <h2 id="faces-h">Pick its face.</h2>
+      <p class="section-sub">It lives in your menu bar, it blinks, and it reacts to how you talk to it. Click one.</p>
     </div>
-    <p class="signoff reveal">Ujjwal, student, and the one person building Rubidu</p>
+    <div class="menubar reveal">
+      <span class="menubar-face" id="menubar-face"><b>○</b><i>‿</i><b>○</b></span>
+      <span class="menubar-time" aria-hidden="true">9:41</span>
+    </div>
+    <div class="face-picker reveal" role="group" aria-label="Face styles">
+      <button type="button" data-face="○‿○" data-eyes="#22D3EE" data-smile="#22D3EE" aria-pressed="true">ghost</button>
+      <button type="button" data-face="(•‿•)" data-eyes="#FFFFFF" data-smile="#FF6EB4">kawaii</button>
+      <button type="button" data-face="[•_•]" data-eyes="#34D399" data-smile="#34D399">robot</button>
+      <button type="button" data-face="(◕ᴥ◕)" data-eyes="#A78BFA" data-smile="#FACC15">dog</button>
+      <button type="button" data-face="(=^･ω･^=)" data-eyes="#FB923C" data-smile="#FFFFFF">cat</button>
+      <button type="button" data-face="✦‿✦" data-eyes="#60A5FA" data-smile="#FF6EB4">happy</button>
+    </div>
   </div>
 </section>
 
-<section class="does" aria-labelledby="does-h">
+<section class="plugins" id="plugins" aria-labelledby="plugins-h">
   <div class="wrap">
-    <h2 id="does-h" class="reveal">What it does today</h2>
-    <div class="bento">
-      <article class="cell cell-talk reveal">
-        <svg class="ico" aria-hidden="true"><use href="#i-microphone"/></svg>
-        <h3>Talk to it, hands free</h3>
-        <p>Say its name, or hold <kbd>⌘</kbd> <kbd>⌥</kbd> and talk. Tap twice and it keeps listening until you tap again.</p>
-        <img src="img/settings-listening.webp" width="980" height="384" loading="lazy"
-             alt="Settings, Listening page with the wake word and push-to-talk options.">
+    <h2 id="plugins-h" class="reveal">Teach it new tricks.</h2>
+    <p class="section-sub reveal">Copy one, then in Rubidu open Settings, Phrases, and press Paste. You see exactly what it does before it's added.</p>
+    <div class="plugin-row">
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;how's the weather&rdquo;</p>
+        <h3>Weather, out loud</h3>
+        <p class="recipe">In Shortcuts, make one called Rubidu Weather: Get Current Weather, then Text with its Condition and Temperature.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;how&#x27;s the weather&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Weather&quot;}], &quot;also&quot;: [&quot;weather today&quot;]}">Copy</button>
       </article>
-      <article class="cell cell-voice reveal">
-        <svg class="ico" aria-hidden="true"><use href="#i-waveform"/></svg>
-        <h3>It can speak in your voice</h3>
-        <p>Read a short script aloud. Rubidu keeps the clearest 30 seconds and clones the voice on your Mac. It is never uploaded.</p>
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;how long to get home&rdquo;</p>
+        <h3>How long to get home</h3>
+        <p class="recipe">In Shortcuts, make one called Rubidu Commute: Get Travel Time to your Home address, then Text.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;how long to get home&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Commute&quot;}]}">Copy</button>
       </article>
-      <article class="cell cell-lang reveal">
-        <svg class="ico" aria-hidden="true"><use href="#i-translate"/></svg>
-        <h3>33 languages, Hinglish included</h3>
-        <p>English, Hinglish and Hindi are measured. About thirty more are selectable.</p>
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;lights off&rdquo;</p>
+        <h3>Lights off</h3>
+        <p class="recipe">In Shortcuts, make one called Rubidu Lights Off: Control Home, turn your lights off.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;lights off&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Lights Off&quot;}]}">Copy</button>
       </article>
-      <article class="cell cell-acts reveal">
-        <svg class="ico" aria-hidden="true"><use href="#i-lightning"/></svg>
-        <h3>It does real things</h3>
-        <ul class="chips" aria-label="Examples">
-          <li>Open and quit apps</li><li>Timers and reminders</li><li>Volume and brightness</li>
-          <li>Play and pause music</li><li>Search the web</li><li>Read your screen, when asked</li>
-          <li>Notes and lists</li><li>Exact maths and units</li>
-        </ul>
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;translate my clipboard&rdquo;</p>
+        <h3>Translate my clipboard</h3>
+        <p class="recipe">In Shortcuts, make one called Rubidu Translate: Get Clipboard, then Translate Text to English. It runs on your Mac.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;translate my clipboard&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Translate&quot;}]}">Copy</button>
       </article>
-      <article class="cell cell-safe reveal">
-        <svg class="ico" aria-hidden="true"><use href="#i-shield-check"/></svg>
-        <h3>Careful by default</h3>
-        <p>Anything risky waits for your yes, and everything it does is listed for you to see. It cannot run shell commands or delete your files.</p>
-        <img src="img/settings-privacy.webp" width="980" height="728" loading="lazy"
-             alt="Settings, Privacy page.">
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;study mode&rdquo;</p>
+        <h3>Study mode</h3>
+        <p class="recipe">Works as it is: nothing else to set up.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;study mode&quot;, &quot;actions&quot;: [{&quot;open_app&quot;: &quot;Notes&quot;}, {&quot;open_url&quot;: &quot;https://www.youtube.com/results?search_query=lofi+study+music&quot;}]}">Copy</button>
+      </article>
+      <article class="plugin reveal">
+        <p class="plugin-say">&ldquo;start my day&rdquo;</p>
+        <h3>Start my day</h3>
+        <p class="recipe">Works as it is: nothing else to set up.</p>
+        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;start my day&quot;, &quot;actions&quot;: [{&quot;open_app&quot;: &quot;Calendar&quot;}, {&quot;open_app&quot;: &quot;Mail&quot;}, {&quot;open_url&quot;: &quot;https://news.google.com&quot;}]}">Copy</button>
       </article>
     </div>
   </div>
@@ -145,26 +172,23 @@
     <h2 id="num-h" class="reveal">Measured, not promised</h2>
     <dl class="stats">
       <div class="stat reveal"><dt>network requests by default</dt><dd class="num">0</dd><dd class="note">No account, no telemetry. Models download once, when you press the button.</dd></div>
-      <div class="stat reveal"><dt>from text to the first spoken word</dt><dd class="num">0.16<span>s</span></dd><dd class="note">Generated on the Mac's own chip, not a server.</dd></div>
-      <div class="stat reveal"><dt>median time for the AI to answer a request</dt><dd class="num">0.45<span>s</span></dd><dd class="note">On a quiet Mac. About 0.9 s while other apps are busy.</dd></div>
-      <div class="stat reveal"><dt>peak memory of the language model</dt><dd class="num">1.76<span>GB</span></dd><dd class="note">Small enough to stay open all day on a 16 GB Mac.</dd></div>
+      <div class="stat reveal"><dt>memory while it waits</dt><dd class="num">0.3<span>GB</span></dd><dd class="note">About 2 GB at the peak of an answer. A 16 GB Mac barely notices.</dd></div>
+      <div class="stat reveal"><dt>to the first spoken word</dt><dd class="num">0.2<span>s</span></dd><dd class="note">Speech made on the Mac's own chip, not a server.</dd></div>
+      <div class="stat reveal"><dt>to transcribe a 77 second memo</dt><dd class="num">3.3<span>s</span></dd><dd class="note">With subtitles, on the same laptop.</dd></div>
       <div class="stat reveal"><dt>installer download</dt><dd class="num">184<span>MB</span></dd><dd class="note">Plus about 1.3 GB of models, fetched once in Setup.</dd></div>
-      <div class="stat reveal"><dt>automated tests before every build</dt><dd class="num">3,406</dd><dd class="note">Every one passes, or nothing ships.</dd></div>
+      <div class="stat reveal"><dt>automated tests before every build</dt><dd class="num">3,547</dd><dd class="note">Every one passes, or nothing ships.</dd></div>
     </dl>
     <p class="footnote reveal">Measured on one MacBook Air (M2, 16 GB, macOS 27), the only Mac Rubidu has run on so far.</p>
   </div>
 </section>
 
-<section class="inside" id="inside" aria-labelledby="inside-h">
-  <div class="wrap">
-    <h2 id="inside-h" class="reveal">What happens when you speak</h2>
-    <ol class="flow">
-      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-ear"/></svg></span><h3>It hears</h3><p>Your voice becomes text on your Mac. The audio is never uploaded.</p></li>
-      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-brain"/></svg></span><h3>It understands</h3><p>It works out what you mean, with the last few things you said as context.</p></li>
-      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"/></svg></span><h3>It checks</h3><p>Before acting, it makes sure the action is allowed. Risky ones wait for your yes.</p></li>
-      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-lightning"/></svg></span><h3>It acts</h3><p>Through the Mac's own controls, the same ones you would use.</p></li>
-      <li class="reveal"><span class="step-icon"><svg class="ico" aria-hidden="true"><use href="#i-speaker-high"/></svg></span><h3>It speaks</h3><p>In the built-in voice, or in yours.</p></li>
-    </ol>
+<section class="story" aria-labelledby="story-h">
+  <div class="wrap narrow letter reveal">
+    <h2 id="story-h">a note from me</h2>
+      <p>Every day I open my Mac and Siri sits there, slow and a bit lost. Meanwhile AI got scary good, but mostly in a browser tab that sends everything I say somewhere else.</p>
+      <p>So I built the assistant I wanted: one that lives on my Mac, talks back in my own voice, gets my Hinglish, and keeps every word on the laptop.</p>
+      <p>It's early and it's mine to fix. Try it, break it, and tell me what it should do next.</p>
+    <p class="signoff">Ujjwal, final-year CS student, building Rubidu in public</p>
   </div>
 </section>
 
@@ -176,7 +200,7 @@
       <div class="todo-group reveal">
         <h3>Where it has run</h3>
         <ul>
-          <li>Only on my MacBook Air (M2, 16 GB). 8 GB Macs and Intel Macs are untested.</li>
+          <li>Only on my MacBook Air (M2, 16 GB). 8 GB Macs should work in Lightweight mode but are untested. No Intel Macs.</li>
           <li>It needs Apple silicon and macOS 26.3 or later.</li>
           <li>No Windows version yet. That needs a Windows PC, which in this economy of RAM and SSD prices is a whole project of its own.</li>
         </ul>
@@ -187,7 +211,7 @@
           <li>It is signed by me, not notarized by Apple, so the first open goes through Privacy &amp; Security, then Open Anyway.</li>
           <li>Short commands in a strong accent are the hardest to hear. It asks "Did you mean…?" when unsure.</li>
           <li>Its windows are not fully readable by VoiceOver yet.</li>
-          <li>It cannot read your email or your notes aloud yet.</li>
+          <li>It answers general questions with a small model that lives on your Mac. For the latest news it offers to search the web instead of guessing.</li>
         </ul>
       </div>
     </div>
@@ -200,7 +224,7 @@
     <div class="qas">
       <details class="qa reveal">
         <summary><h3>What is Rubidu?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <p>Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: opening apps, timers and reminders, music and volume, web searches, and reading your screen when you ask.</p>
+        <p>Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: apps, timers and reminders, music and volume, messages, dictation into any app, transcribing recordings and reading text aloud.</p>
       </details>
       <details class="qa reveal">
         <summary><h3>Does Rubidu send my voice or data to the cloud?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
@@ -244,14 +268,8 @@
 <section class="feedback" id="feedback" aria-labelledby="fb-h">
   <div class="wrap fb-grid">
     <div class="fb-intro reveal">
-      <h2 id="fb-h">Help me build it.</h2>
-      <p>You're a developer, a Mac user, a designer, a marketer, or just curious. Tell me what I'm missing before launch.</p>
-      <ul class="prompts">
-        <li><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg>What would you want your own AI buddy to do?</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-bug"/></svg>What should I test before I launch?</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-megaphone"/></svg>How would you get something like this in front of people?</li>
-      </ul>
-      <p class="fine">I read every message. Each one is filed under its topic in a private Google Sheet that only I can open. Your email is optional and only used to reply to you. <a href="privacy.html">How your message is handled</a>.</p>
+      <h2 id="fb-h">Tell me what it should do next.</h2>
+      <p>I read every message. Each one is filed under its topic in a private Google Sheet that only I can open. Your email is optional and only used to reply to you. <a href="privacy.html">How your message is handled</a>.</p>
     </div>
 
     <form class="fb-form reveal" id="fb-form" novalidate>
@@ -310,21 +328,13 @@
 
 <footer class="footer">
   <div class="wrap footer-row">
-    <div class="brand"><img src="img/mark.svg" alt="" width="34" height="17" class="brand-mark"><span>Rubidu</span></div>
-    <p>Made on a MacBook Air by a student. Rubidu runs on open, commercially licensed AI models, entirely on your Mac.<br><span class="legal">Mac and Siri are trademarks of Apple Inc. Rubidu is an independent project, not affiliated with Apple, Anthropic or OpenAI. · <a href="privacy.html">Privacy</a></span></p>
+    <div class="brand"><span class="brand-face" aria-hidden="true">○‿○</span><span>rubidu</span></div>
+    <p>Made on a MacBook Air by a student. Rubidu runs on open, commercially licensed AI models, entirely on your Mac.<br><span class="legal">Mac and Siri are trademarks of Apple Inc. Rubidu is an independent project, not affiliated with Apple, Anthropic or OpenAI. <a href="privacy.html">Privacy</a></span></p>
     <nav class="footer-links" aria-label="Rubidu elsewhere"><a href="https://www.instagram.com/heyrubidu/" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a><a href="https://www.youtube.com/@heyrubidu" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a></nav>
   </div>
 </footer>
 
 <script src="js/config.js"></script>
 <script src="js/site.js" defer></script>
-<script type="module">
-  const canvas = document.getElementById("mark3d");
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const start = () => import("./js/mark3d.js")
-    .then((m) => { m.mountMark(canvas, { reducedMotion: reduce }); document.querySelector(".mark-fallback")?.remove(); })
-    .catch(() => { canvas.remove(); });   // no WebGL: the flat mark stays
-  ("requestIdleCallback" in window) ? requestIdleCallback(start, { timeout: 1200 }) : setTimeout(start, 300);
-</script>
 </body>
 </html>

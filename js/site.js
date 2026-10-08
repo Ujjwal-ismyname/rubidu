@@ -77,3 +77,71 @@ document.documentElement.classList.add("js");
     }
   });
 })();
+
+// The face: eyes follow the pointer, it blinks, a click makes it grin. Real exchanges in the bubble.
+(() => {
+  const face = document.querySelector(".face");
+  if (!face) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pupils = [...face.querySelectorAll(".pupil")];
+  let px = 0, py = 0, queued = false;
+  const look = () => {
+    queued = false;
+    const box = face.getBoundingClientRect(), k = 465 / box.width;
+    for (const p of pupils) {
+      const cx = box.left + (+p.getAttribute("cx")) / k, cy = box.top + 111 / k;
+      const dx = px - cx, dy = py - cy, d = Math.hypot(dx, dy) || 1, r = 34 * Math.min(1, d / 260);
+      p.style.transform = `translate(${dx / d * r}px, ${dy / d * r}px)`;
+    }
+  };
+  if (!reduce) {
+    addEventListener("pointermove", (e) => { px = e.clientX; py = e.clientY; if (!queued) { queued = true; requestAnimationFrame(look); } });
+    setInterval(() => { face.classList.add("blink"); setTimeout(() => face.classList.remove("blink"), 200); }, 4000);
+  }
+  // Each pair is a real turn: what was said, and Rubidu's answer (from the app, 2026-10-08).
+  const talk = [
+    ["you", "mujhe ek joke sunao"], ["rubidu", "Why don't skeletons fight each other? They don't have the guts."],
+    ["you", "I got the job today!"], ["rubidu", "Oh, that's amazing! You must be so excited."],
+    ["you", "who won the last cricket world cup"], ["rubidu", "Do you want me to search the web for that?"],
+    ["you", "find my resume pdf"], ["rubidu", "Here's your resume, in Downloads."],
+  ];
+  const bubble = document.querySelector(".bubble");
+  let i = 0;
+  const next = () => {
+    i = (i + 1) % talk.length;
+    bubble.classList.add("swap");
+    setTimeout(() => {
+      const [who, line] = talk[i];
+      bubble.querySelector(".who").textContent = who;
+      bubble.querySelector(".line").textContent = line;
+      bubble.classList.toggle("rubidu", who === "rubidu");
+      face.classList.toggle("happy", who === "rubidu");
+      bubble.classList.remove("swap");
+    }, 250);
+  };
+  if (!reduce) setInterval(next, 3200);
+  document.querySelector(".face-btn").addEventListener("click", next);
+})();
+
+// Pick a face: the real styles and colours from the app, in a menu bar.
+(() => {
+  const out = document.getElementById("menubar-face");
+  const buttons = document.querySelectorAll(".face-picker button");
+  buttons.forEach((b) => b.addEventListener("click", () => {
+    buttons.forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+    const mouth = "‿_ᴥω";
+    out.replaceChildren(...[...b.dataset.face].map((ch) => {
+      const s = document.createElement(mouth.includes(ch) ? "i" : "b");
+      s.textContent = ch;
+      s.style.color = mouth.includes(ch) ? b.dataset.smile : b.dataset.eyes;
+      return s;
+    }));
+  }));
+  buttons[0]?.click();
+})();
+
+// Copy a plugin: exactly what Settings, Phrases, Paste accepts.
+document.querySelectorAll(".copy").forEach((b) => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied. Now paste it in Rubidu"; b.classList.add("done"); }
+  catch { b.textContent = "Couldn't copy here"; }
+}));
