@@ -141,7 +141,7 @@ document.documentElement.classList.add("js");
   buttons[0]?.click();
 })();
 
-// Copy a plugin: exactly what Settings, Phrases, Paste accepts.
+// Copy buttons.
 document.querySelectorAll(".copy").forEach((b) => b.addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied. Now paste it in Rubidu"; b.classList.add("done"); }
   catch { b.textContent = "Couldn't copy here"; }
@@ -234,7 +234,7 @@ const source = (() => {
     $("wl-err").hidden = !bad; email.setAttribute("aria-invalid", bad ? "true" : "false");
     if (bad) { email.focus(); return; }
     if (!ENDPOINT) { status.textContent = "The waitlist opens in a moment. Try again soon."; return; }
-    const body = new URLSearchParams({ kind: "waitlist", email: value, beta: $("wl-beta").checked ? "yes" : "",
+    const body = new URLSearchParams({ kind: "waitlist", email: value,
       source, page: location.href.split("#")[0], website: $("wl-website").value });
     send.disabled = true; send.textContent = "Joining…";
     try {

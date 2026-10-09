@@ -19,7 +19,7 @@
   const NAMES = {
     "apple-silicon": "Apple silicon", intel: "Intel", "no-mac": "No Mac yet", unsure: "Not sure",
     talk: "Talking to the Mac", dictate: "Typing by voice", transcribe: "Transcribing", read: "Read aloud",
-    hinglish: "Hinglish", plugins: "Plugins", privacy: "Nothing leaves the Mac",
+    hinglish: "Hinglish", privacy: "Nothing leaves the Mac",
     free: "Only if free", "once-299": "₹299 once", "once-999": "₹999 once", monthly: "Monthly",
   };
 
@@ -81,7 +81,6 @@
     bars("st-uses", Object.entries(s.waitlist.uses || {}));
     bars("st-pay", Object.entries(s.waitlist.pay || {}));
     bars("st-mac", Object.entries(s.waitlist.mac || {}));
-    $("st-beta").textContent = `${fmt(s.waitlist.beta)} of ${fmt(s.waitlist.count)} want test builds.`;
     $("st-tz").textContent = s.timezone;
     $("st-updated").textContent = `updated ${new Date(s.generated).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
     $("st-body").hidden = false;

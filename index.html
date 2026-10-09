@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Rubidu", "url": "https://ujjwal-ismyname.github.io/rubidu/", "description": "Rubidu is a private, local-first voice assistant for macOS, built by a student."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ujjwal", "jobTitle": "Computer science student", "description": "Final-year computer science student building Rubidu.", "sameAs": ["https://www.instagram.com/heyrubidu/", "https://www.youtube.com/@heyrubidu"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Rubidu?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: apps, timers and reminders, music and volume, messages, dictation into any app, transcribing recordings and reading text aloud."}}, {"@type": "Question", "name": "Does Rubidu send my voice or data to the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download in Setup, Rubidu works with no internet connection."}}, {"@type": "Question", "name": "Can Rubidu speak in my own voice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like."}}, {"@type": "Question", "name": "Which Macs does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory."}}, {"@type": "Question", "name": "Is there a Windows version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A Windows version is planned after the Mac launch."}}, {"@type": "Question", "name": "When can I try it?", "acceptedAnswer": {"@type": "Answer", "text": "The basics already work, and I'm making it great before I hand it out. Join the waitlist at the top of this page and you'll get one email the moment it's ready (tick the box for early test builds). Or follow @heyrubidu on [Instagram](https://www.instagram.com/heyrubidu/) and [YouTube](https://www.youtube.com/@heyrubidu) to watch it being built."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Rubidu?", "acceptedAnswer": {"@type": "Answer", "text": "Rubidu is a voice assistant for macOS that runs entirely on your Mac. You talk to it, it answers in a voice you choose, and it does things for you: apps, timers and reminders, music and volume, messages, dictation into any app, transcribing recordings and reading text aloud."}}, {"@type": "Question", "name": "Does Rubidu send my voice or data to the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Hearing, thinking and speaking all happen on your Mac. There is no account and no telemetry. The only download is the AI models, once, when you press the button in Setup."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download in Setup, Rubidu works with no internet connection."}}, {"@type": "Question", "name": "Can Rubidu speak in my own voice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You read a short script aloud, and Rubidu learns your voice on your Mac. The recording is never uploaded, and you can delete it whenever you like."}}, {"@type": "Question", "name": "Which Macs does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "Macs with Apple silicon on macOS 26.3 or later. So far it has been tested on a MacBook Air with an M2 chip and 16 GB of memory."}}, {"@type": "Question", "name": "Is there a Windows version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A Windows version is planned after the Mac launch."}}, {"@type": "Question", "name": "When can I try it?", "acceptedAnswer": {"@type": "Answer", "text": "The basics already work, and I'm making it great before I hand it out. Join the waitlist at the top of this page and you'll get one email the moment it's ready. Or follow @heyrubidu on [Instagram](https://www.instagram.com/heyrubidu/) and [YouTube](https://www.youtube.com/@heyrubidu) to watch it being built."}}]}</script>
 <script>(function(){var t=new URLSearchParams(location.search).get("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;})();</script>
 </head>
 <body>
@@ -35,7 +35,6 @@
     <a class="brand" href="#top" aria-label="Rubidu home"><span class="brand-face" aria-hidden="true">○‿○</span><span>rubidu</span></a>
     <nav aria-label="Sections">
       <a href="#app">What it does</a>
-      <a href="#plugins">Plugins</a>
       <a href="#status">Not done yet</a>
       <a href="#faq">Questions</a>
     </nav>
@@ -77,7 +76,7 @@
         <h2 id="wl-h">The basics work. Now the fun part.</h2>
         <p class="section-sub">Rubidu already opens your apps, sets timers, does exact maths, searches the web and talks back, all on one MacBook Air. Next I'm making it faster, friendlier and worth using every day. Join, and you'll hear first.</p>
         <p class="wl-next-h">On my desk next</p>
-        <ul class="wl-next"><li>Answers that feel instant</li><li>Setup in two minutes</li><li>Better Hinglish</li><li>More plugins, from your ideas</li><li>A face that reacts to you</li></ul>
+        <ul class="wl-next"><li>Answers that feel instant</li><li>Setup in two minutes</li><li>Better Hinglish</li><li>A face that reacts to you</li></ul>
       </div>
       <div class="wl-box">
         <form class="wl-form" id="wl-form" novalidate>
@@ -87,8 +86,7 @@
                    placeholder="you@email.com" required aria-describedby="wl-promise wl-err">
             <button class="btn btn-primary" type="submit" id="wl-send">Join the waitlist</button>
           </div>
-          <label class="wl-check"><input type="checkbox" id="wl-beta" name="beta" value="yes"><span>Send me early test builds too</span></label>
-          <p class="fine" id="wl-promise">One email when it's ready. Test builds only if you tick the box. No spam, ever. <a href="privacy.html#waitlist">How your email is handled</a>.</p>
+          <p class="fine" id="wl-promise">One email when it's ready. No spam, ever. <a href="privacy.html#waitlist">How your email is handled</a>.</p>
           <p class="error" id="wl-err" hidden>That email doesn't look right.</p>
           <div class="hp" aria-hidden="true"><label for="wl-website">Leave this empty</label><input id="wl-website" name="website" tabindex="-1" autocomplete="off"></div>
           <p class="form-status" id="wl-status" role="status" aria-live="polite"></p>
@@ -105,7 +103,7 @@
             </fieldset>
             <fieldset class="field wl-q">
               <legend>What would you use most? <span class="opt">(pick any)</span></legend>
-              <div class="chip-row"><label class="choice"><input type="checkbox" name="uses" value="talk"><span>Talking to my Mac</span></label><label class="choice"><input type="checkbox" name="uses" value="dictate"><span>Typing with my voice</span></label><label class="choice"><input type="checkbox" name="uses" value="transcribe"><span>Transcribing recordings</span></label><label class="choice"><input type="checkbox" name="uses" value="read"><span>Hearing text read aloud</span></label><label class="choice"><input type="checkbox" name="uses" value="hinglish"><span>Hinglish</span></label><label class="choice"><input type="checkbox" name="uses" value="plugins"><span>Plugins and shortcuts</span></label><label class="choice"><input type="checkbox" name="uses" value="privacy"><span>Nothing leaves my Mac</span></label></div>
+              <div class="chip-row"><label class="choice"><input type="checkbox" name="uses" value="talk"><span>Talking to my Mac</span></label><label class="choice"><input type="checkbox" name="uses" value="dictate"><span>Typing with my voice</span></label><label class="choice"><input type="checkbox" name="uses" value="transcribe"><span>Transcribing recordings</span></label><label class="choice"><input type="checkbox" name="uses" value="read"><span>Hearing text read aloud</span></label><label class="choice"><input type="checkbox" name="uses" value="hinglish"><span>Hinglish</span></label><label class="choice"><input type="checkbox" name="uses" value="privacy"><span>Nothing leaves my Mac</span></label></div>
             </fieldset>
             <fieldset class="field wl-q">
               <legend>Would you pay for it?</legend>
@@ -180,50 +178,6 @@
   </div>
 </section>
 
-<section class="plugins" id="plugins" aria-labelledby="plugins-h">
-  <div class="wrap">
-    <h2 id="plugins-h" class="reveal">Teach it new tricks.</h2>
-    <p class="section-sub reveal">Copy one, then in Rubidu open Settings, Phrases, and press Paste. You see exactly what it does before it's added.</p>
-    <div class="plugin-row">
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;how's the weather&rdquo;</p>
-        <h3>Weather, out loud</h3>
-        <p class="recipe">In Shortcuts, make one called Rubidu Weather: Get Current Weather, then Text with its Condition and Temperature.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;how&#x27;s the weather&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Weather&quot;}], &quot;also&quot;: [&quot;weather today&quot;]}">Copy</button>
-      </article>
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;how long to get home&rdquo;</p>
-        <h3>How long to get home</h3>
-        <p class="recipe">In Shortcuts, make one called Rubidu Commute: Get Travel Time to your Home address, then Text.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;how long to get home&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Commute&quot;}]}">Copy</button>
-      </article>
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;lights off&rdquo;</p>
-        <h3>Lights off</h3>
-        <p class="recipe">In Shortcuts, make one called Rubidu Lights Off: Control Home, turn your lights off.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;lights off&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Lights Off&quot;}]}">Copy</button>
-      </article>
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;translate my clipboard&rdquo;</p>
-        <h3>Translate my clipboard</h3>
-        <p class="recipe">In Shortcuts, make one called Rubidu Translate: Get Clipboard, then Translate Text to English. It runs on your Mac.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;translate my clipboard&quot;, &quot;actions&quot;: [{&quot;shortcut&quot;: &quot;Rubidu Translate&quot;}]}">Copy</button>
-      </article>
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;study mode&rdquo;</p>
-        <h3>Study mode</h3>
-        <p class="recipe">Works as it is: nothing else to set up.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;study mode&quot;, &quot;actions&quot;: [{&quot;open_app&quot;: &quot;Notes&quot;}, {&quot;open_url&quot;: &quot;https://www.youtube.com/results?search_query=lofi+study+music&quot;}]}">Copy</button>
-      </article>
-      <article class="plugin reveal">
-        <p class="plugin-say">&ldquo;start my day&rdquo;</p>
-        <h3>Start my day</h3>
-        <p class="recipe">Works as it is: nothing else to set up.</p>
-        <button class="btn btn-ghost btn-sm copy" type="button" data-copy="{&quot;phrase&quot;: &quot;start my day&quot;, &quot;actions&quot;: [{&quot;open_app&quot;: &quot;Calendar&quot;}, {&quot;open_app&quot;: &quot;Mail&quot;}, {&quot;open_url&quot;: &quot;https://news.google.com&quot;}]}">Copy</button>
-      </article>
-    </div>
-  </div>
-</section>
 
 <section class="numbers" id="numbers" aria-labelledby="num-h">
   <div class="wrap">
@@ -306,7 +260,7 @@
       </details>
       <details class="qa reveal">
         <summary><h3>When can I try it?</h3><svg class="ico chev" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <p>The basics already work, and I'm making it great before I hand it out. Join the waitlist at the top of this page and you'll get one email the moment it's ready (tick the box for early test builds). Or follow @heyrubidu on <a href="https://www.instagram.com/heyrubidu/" rel="noopener">Instagram</a> and <a href="https://www.youtube.com/@heyrubidu" rel="noopener">YouTube</a> to watch it being built.</p>
+        <p>The basics already work, and I'm making it great before I hand it out. Join the waitlist at the top of this page and you'll get one email the moment it's ready. Or follow @heyrubidu on <a href="https://www.instagram.com/heyrubidu/" rel="noopener">Instagram</a> and <a href="https://www.youtube.com/@heyrubidu" rel="noopener">YouTube</a> to watch it being built.</p>
       </details>
     </div>
   </div>

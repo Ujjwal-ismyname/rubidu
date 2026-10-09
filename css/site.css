@@ -338,3 +338,4 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .stats-page #st-body > .fine { margin-top: 18px; }
 @media (max-width: 640px) { .st-tiles { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { .wl-card::before { animation: none; } }
+.wl-form #wl-promise { margin-top: 14px; }
