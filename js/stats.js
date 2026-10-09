@@ -20,7 +20,7 @@
     "apple-silicon": "Apple silicon", intel: "Intel", "no-mac": "No Mac yet", unsure: "Not sure",
     talk: "Talking to the Mac", dictate: "Typing by voice", transcribe: "Transcribing", read: "Read aloud",
     hinglish: "Hinglish", privacy: "Nothing leaves the Mac",
-    free: "Only if free", "once-299": "₹299 once", "once-999": "₹999 once", monthly: "Monthly",
+    monthly: "Monthly (₹199)", "once-low": "Once, lower (₹1,000)", "once-high": "Once, higher (₹1,999)",
   };
 
   function bars(id, pairs) {
@@ -81,6 +81,8 @@
     bars("st-uses", Object.entries(s.waitlist.uses || {}));
     bars("st-pay", Object.entries(s.waitlist.pay || {}));
     bars("st-mac", Object.entries(s.waitlist.mac || {}));
+    const cur = Object.entries(s.waitlist.currency || {}).map(([k, v]) => `${k} ${fmt(v)}`).join(" · ");
+    $("st-cur").textContent = cur ? `Prices were shown in: ${cur}.` : "";
     $("st-tz").textContent = s.timezone;
     $("st-updated").textContent = `updated ${new Date(s.generated).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
     $("st-body").hidden = false;

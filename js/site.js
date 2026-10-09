@@ -196,6 +196,30 @@ const source = (() => {
   }
 })();
 
+// Prices in the visitor's own money: India rupees, the UK pounds, the rest of Europe euros, everyone
+// else dollars. The time zone decides (a browser set to British English in Delhi or New York is
+// common); the language only when the time zone says nothing. Nothing is looked up online.
+const CURRENCY = (() => {
+  let tz = "";
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch { /* old browser */ }
+  if (/^Asia\/(Kolkata|Calcutta)$/.test(tz)) return "INR";
+  if (/^Europe\/(London|Belfast|Jersey|Guernsey|Isle_of_Man)$/.test(tz)) return "GBP";
+  if (tz.startsWith("Europe/")) return "EUR";
+  if (tz && !/^(UTC|Etc\/|GMT)/.test(tz)) return "USD";
+  const lang = (navigator.languages || [navigator.language || ""]).join(" ");
+  if (/-IN\b/i.test(lang)) return "INR";
+  if (/-GB\b/i.test(lang)) return "GBP";
+  if (/\b(de|fr|es|it|nl|pt-PT|fi|el|sk|sl|et|lv|lt)\b/i.test(lang)) return "EUR";
+  return "USD";
+})();
+(() => {
+  const table = (RUBIDU.prices || {})[CURRENCY];
+  if (!table) return;
+  document.querySelectorAll("[data-tpl]").forEach((el) => {
+    el.textContent = el.dataset.tpl.replace(/\{([\w-]+)\}/g, (m, k) => table[k] || m);
+  });
+})();
+
 // The waitlist.
 (() => {
   const form = document.getElementById("wl-form");
@@ -267,7 +291,8 @@ const source = (() => {
     ev.preventDefault();
     const more = ev.currentTarget, st = $("wl-more-status");
     const pick = (name) => [...more.querySelectorAll(`input[name=${name}]:checked`)].map((i) => i.value).join(",");
-    const body = new URLSearchParams({ kind: "waitlist_more", token, mac: pick("mac"), uses: pick("uses"), pay: pick("pay") });
+    const body = new URLSearchParams({ kind: "waitlist_more", token, mac: pick("mac"), uses: pick("uses"), pay: pick("pay"),
+      currency: (RUBIDU.prices || {})[CURRENCY] ? CURRENCY : "INR" });
     if (!body.get("mac") && !body.get("uses") && !body.get("pay")) { st.textContent = "Tap an answer or two first."; return; }
     $("wl-more-send").disabled = true;
     try {
