@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Stats | Rubidu</title>
+<link rel="icon" href="img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body class="stats-page">
+<main class="wrap" style="padding-block:40px 80px">
+  <header class="st-head">
+    <a class="brand" href="./"><span class="brand-face" aria-hidden="true">○‿○</span><span>rubidu</span></a>
+    <span class="st-sub" id="st-updated">your numbers</span>
+    <button class="btn btn-ghost btn-sm" type="button" id="st-refresh">Refresh</button>
+  </header>
+  <form class="st-key" id="st-key" hidden>
+    <label for="st-key-in">Your stats key. In the Google Sheet: Rubidu, then Show my stats link.</label>
+    <div class="wl-row"><input id="st-key-in" type="password" autocomplete="off"><button class="btn btn-primary" type="submit">Open</button></div>
+    <p class="error" id="st-err" hidden></p>
+  </form>
+  <p class="st-loading" id="st-loading" hidden>Counting…</p>
+  <div id="st-body" hidden>
+    <section class="st-tiles" aria-label="Today and all time">
+      <div class="st-tile"><p>views today</p><b id="t-views">0</b></div>
+      <div class="st-tile"><p>visitors today</p><b id="t-visitors">0</b></div>
+      <div class="st-tile accent"><p>joined today</p><b id="t-signups">0</b></div>
+      <div class="st-tile"><p>views, all time</p><b id="a-views">0</b></div>
+      <div class="st-tile"><p>visitors, all time</p><b id="a-visitors">0</b></div>
+      <div class="st-tile accent"><p>on the waitlist</p><b id="a-waitlist">0</b></div>
+    </section>
+    <section class="st-card"><h2>Last 30 days</h2><div id="st-chart" class="st-chart" role="img" aria-label="Views, visitors and signups per day"></div>
+      <p class="fine st-legend"><span class="lg lg-v"></span>views <span class="lg lg-u"></span>visitors <span class="lg lg-s"></span>joined</p></section>
+    <div class="st-grid">
+      <section class="st-card"><h2>Where they came from</h2><ul class="st-bars" id="st-sources"></ul></section>
+      <section class="st-card"><h2>Devices</h2><ul class="st-bars" id="st-devices"></ul></section>
+      <section class="st-card"><h2>What they'd use</h2><ul class="st-bars" id="st-uses"></ul></section>
+      <section class="st-card"><h2>What they'd pay</h2><ul class="st-bars" id="st-pay"></ul></section>
+      <section class="st-card"><h2>Their Mac</h2><ul class="st-bars" id="st-mac"></ul><p class="fine" id="st-beta"></p></section>
+    </div>
+    <p class="fine">Visitors are browsers on their first visit that day. Days follow the script's time zone (<span id="st-tz"></span>).</p>
+  </div>
+</main>
+<script src="js/config.js"></script>
+<script src="js/stats.js" defer></script>
+</body>
+</html>

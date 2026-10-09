@@ -1,4 +1,5 @@
-// Scroll reveals and the feedback form. No frameworks, no trackers.
+// Scroll reveals, the waitlist, the feedback form and a cookie-free visit counter. No frameworks,
+// no cookies, no third-party trackers (what the counter sends: privacy.html#visits).
 document.documentElement.classList.add("js");
 
 // Reveal sections as they arrive, in order (motion with a reason: it paces the story).
@@ -145,3 +146,158 @@ document.querySelectorAll(".copy").forEach((b) => b.addEventListener("click", as
   try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied. Now paste it in Rubidu"; b.classList.add("done"); }
   catch { b.textContent = "Couldn't copy here"; }
 }));
+
+// ------------------------------------------------------------------------------------------
+// The backend: the same private Google Sheet as the feedback (website-private/feedback-backend).
+const RUBIDU = window.RUBIDU_SITE || {};
+const ENDPOINT = (window.RUBIDU_FEEDBACK_ENDPOINT || "").trim();
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode: fine */ } },
+};
+const today = () => new Date().toLocaleDateString("en-CA");          // yyyy-mm-dd, the visitor's own day
+const params = new URLSearchParams(location.search);
+// Where a visitor came from: ?ref= / ?utm_source= first (Instagram's in-app browser sends no
+// referrer), else the referring site, else "direct". Only a short name ever leaves the page.
+// Kept for this tab's session, so a reload or a second page still credits the reel that sent them.
+const source = (() => {
+  let found = "";
+  const tag = params.get("ref") || params.get("utm_source");
+  if (tag) found = tag.toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 40);
+  else {
+    try {
+      const r = document.referrer && new URL(document.referrer).hostname;
+      if (r && r !== location.hostname) found = r.replace(/^www\./, "");
+    } catch { /* no referrer */ }
+  }
+  try {
+    if (found) sessionStorage.setItem("rubidu_src", found);
+    else found = sessionStorage.getItem("rubidu_src") || "";
+  } catch { /* storage off: fine */ }
+  return found || "direct";
+})();
+
+// Visits: counted only on the real site, never for Do Not Track / Global Privacy Control, and
+// never for the owner (open the site once with ?me to stop counting yourself; ?me=off undoes it).
+(() => {
+  if (params.has("me")) store.set("rubidu_notrack", params.get("me") === "off" ? "" : "1");
+  const optOut = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl === true;
+  if (!RUBIDU.countVisits || !ENDPOINT || optOut || store.get("rubidu_notrack") === "1") return;
+  if (location.hostname !== RUBIDU.countOn) return;
+  const ua = navigator.userAgent;
+  const touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;      // iPadOS says "Macintosh"
+  const device = /iPhone/.test(ua) ? "iphone" : (/iPad/.test(ua) || touchMac) ? "ipad" : /Android/.test(ua) ? "android"
+    : /Macintosh/.test(ua) ? "mac" : /Windows/.test(ua) ? "windows" : /Linux|X11/.test(ua) ? "linux" : "other";
+  const fresh = store.get("rubidu_day") !== today();
+  store.set("rubidu_day", today());
+  const body = new URLSearchParams({ kind: "hit", path: location.pathname, source, device, new: fresh ? "1" : "0" });
+  if (!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, body))) {
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", body, keepalive: true }).catch(() => {});
+  }
+})();
+
+// The waitlist.
+(() => {
+  const form = document.getElementById("wl-form");
+  if (!form) return;
+  const $ = (id) => document.getElementById(id);
+  const email = $("wl-email"), send = $("wl-send"), status = $("wl-status"), done = $("wl-done");
+  const label = send.textContent;
+  const validEmail = (v) => /^[^\s@<>"',;]+@[^\s@<>"',;]+\.[^\s@<>"',;]{2,}$/.test(v);
+  let token = "";
+
+  // How many are waiting: shown once it is a number worth showing.
+  const showCount = (n) => {
+    if (!(n >= (RUBIDU.showCountFrom || 25))) return;
+    $("wl-n").textContent = n.toLocaleString("en-IN");
+    $("wl-count").hidden = false;
+  };
+  if (ENDPOINT) {
+    fetch(`${ENDPOINT}?kind=count`).then((r) => r.json()).then((d) => showCount(d.waitlist)).catch(() => {});
+  }
+
+  const joined = (position, already) => {
+    form.hidden = true;
+    done.hidden = false;
+    $("wl-pos").textContent = position ? (already ? `Still #${position}.` : `#${position} on the list.`) : "";
+    document.querySelector(".face")?.classList.add("happy");
+    store.set("rubidu_joined", "1");
+    document.getElementById("wl-pill")?.classList.remove("show");
+    done.focus({ preventScroll: true });
+  };
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    status.className = "form-status"; status.textContent = "";
+    const value = email.value.trim();
+    const bad = !validEmail(value);
+    $("wl-err").hidden = !bad; email.setAttribute("aria-invalid", bad ? "true" : "false");
+    if (bad) { email.focus(); return; }
+    if (!ENDPOINT) { status.textContent = "The waitlist opens in a moment. Try again soon."; return; }
+    const body = new URLSearchParams({ kind: "waitlist", email: value, beta: $("wl-beta").checked ? "yes" : "",
+      source, page: location.href.split("#")[0], website: $("wl-website").value });
+    send.disabled = true; send.textContent = "Joining…";
+    try {
+      let r;
+      try {
+        r = await fetch(ENDPOINT, { method: "POST", body });
+      } catch {
+        // The reply could not be read (a browser quirk) or the network is down. Send it the way
+        // the feedback form does: delivered if online, just without the place in line.
+        await fetch(ENDPOINT, { method: "POST", mode: "no-cors", body });
+        $("wl-more").hidden = true;
+        joined(0, false);
+        return;
+      }
+      let d = null;
+      try { d = await r.json(); } catch { /* an old backend answers in plain text */ }
+      if (d && d.ok) { token = d.token || ""; showCount(d.waitlist); joined(d.position, d.already); }
+      else if (d && d.error === "email") { $("wl-err").hidden = false; email.focus(); }
+      else if (d && d.error === "busy") { status.classList.add("bad"); status.textContent = "Lots of people at once. Try again in a minute."; }
+      else { status.classList.add("bad"); status.textContent = "The waitlist isn't open yet. Try again later today."; }
+    } catch {
+      status.classList.add("bad");
+      status.textContent = "That didn't go through. Check your connection and try again.";
+    } finally {
+      send.disabled = false; send.textContent = label;
+    }
+  });
+
+  $("wl-more").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const more = ev.currentTarget, st = $("wl-more-status");
+    const pick = (name) => [...more.querySelectorAll(`input[name=${name}]:checked`)].map((i) => i.value).join(",");
+    const body = new URLSearchParams({ kind: "waitlist_more", token, mac: pick("mac"), uses: pick("uses"), pay: pick("pay") });
+    if (!body.get("mac") && !body.get("uses") && !body.get("pay")) { st.textContent = "Tap an answer or two first."; return; }
+    $("wl-more-send").disabled = true;
+    try {
+      await fetch(ENDPOINT, { method: "POST", mode: "no-cors", body });
+      more.querySelectorAll("fieldset, #wl-more-send, .wl-more-h").forEach((el) => { el.hidden = true; });
+      st.className = "form-status ok"; st.textContent = RUBIDU.thanks || "Thank you.";
+    } catch {
+      st.className = "form-status bad"; st.textContent = "That didn't send. Try again?";
+      $("wl-more-send").disabled = false;
+    }
+  });
+
+  $("wl-share").addEventListener("click", async (ev) => {
+    const b = ev.currentTarget, url = RUBIDU.shareUrl || location.origin + location.pathname;
+    try {
+      if (navigator.share) await navigator.share({ title: "Rubidu", text: RUBIDU.shareText, url });
+      else { await navigator.clipboard.writeText(url); b.textContent = "Link copied"; }
+    } catch { /* they closed the share sheet */ }
+  });
+
+  // The button that follows you down: after the top of the page, gone near the waitlist,
+  // the feedback form and the footer, and for good once you've joined.
+  const pill = document.getElementById("wl-pill");
+  if (!pill || !("IntersectionObserver" in window)) return;
+  const seen = new Map();
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) seen.set(e.target, e.isIntersecting);
+    const hero = seen.get(document.querySelector(".hero"));
+    const near = [...seen].some(([el, on]) => on && el !== document.querySelector(".hero"));
+    pill.classList.toggle("show", hero === false && !near && store.get("rubidu_joined") !== "1");
+  }, { threshold: 0 });
+  [".hero", "#waitlist", "#feedback", ".footer"].forEach((q) => { const el = document.querySelector(q); if (el) io.observe(el); });
+})();
