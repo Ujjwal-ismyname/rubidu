@@ -63,13 +63,34 @@ document.documentElement.classList.add("js");
       page: location.href.split("#")[0],
     });
     send.disabled = true; send.textContent = "Sending…";
-    try {
-      // Apps Script does not send CORS headers, so the reply is opaque: a resolved
-      // fetch means it was delivered; only a network failure lands in catch.
-      await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
+    const thanks = () => {
       form.reset(); $("count").textContent = "0";
       status.classList.add("ok");
       status.textContent = "Thank you. It's in, filed under its topic. Send another any time.";
+    };
+    try {
+      data.set("pow", await POW.take());
+      let reply;
+      try {
+        reply = await (await fetch(endpoint, { method: "POST", body: data })).text();
+        const asked = /^proof:(\d+)$/.exec(reply);
+        if (asked) {
+          POW.harder(Number(asked[1]));
+          data.set("pow", await POW.take());
+          reply = await (await fetch(endpoint, { method: "POST", body: data })).text();
+        }
+      } catch {
+        // The reply could not be read (a browser quirk): send it unread, as before.
+        await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
+        reply = "ok";
+      }
+      if (reply === "ok") thanks();
+      else {
+        status.classList.add("bad");
+        status.textContent = reply === "busy"
+          ? "Lots of messages right now. Try again in a minute; your text is still here."
+          : "That didn't go through. Try again in a minute; your text is still here.";
+      }
     } catch {
       status.classList.add("bad");
       status.textContent = "That didn't send. Check your connection and try again; your text is still here.";
@@ -155,7 +176,53 @@ const store = {
   get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode: fine */ } },
 };
-const today = () => new Date().toLocaleDateString("en-CA");          // yyyy-mm-dd, the visitor's own day
+const today = () => new Date().toLocaleDateString("en-CA");
+
+// Before a form is sent, the browser solves a small puzzle (a proof of work) that the backend
+// checks: one entry costs a person about a second, and costs a bot that per entry too. Solving
+// starts when someone clicks into a form, so it is usually done before they finish typing.
+const POW = (() => {
+  let bits = RUBIDU.powBits || 18, pending = null;
+  const rand = () => Math.random().toString(36).slice(2, 12).padEnd(10, "0");
+  const solveHere = async (prefix) => {           // no workers: the slower main-thread way
+    const enc = new TextEncoder();
+    for (let n = 0; ; n++) {
+      const h = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(prefix + n)));
+      let ok = true;
+      for (let i = 0; i < bits && ok; i++) if (h[i >> 3] & (0x80 >> (i & 7))) ok = false;
+      if (ok) return n;
+      if (n % 2000 === 0) await new Promise((r) => setTimeout(r));
+    }
+  };
+  const make = () => {
+    const stamp = Date.now(), r = rand(), prefix = `rubidu:${stamp}.${r}:`;
+    const done = (n) => ({ value: `${stamp}.${r}:${n}`, stamp });
+    return new Promise((resolve) => {
+      try {
+        const w = new Worker("js/pow-worker.js");
+        w.onmessage = (e) => { w.terminate(); resolve(done(e.data)); };
+        w.onerror = () => { w.terminate(); solveHere(prefix).then((n) => resolve(done(n))); };
+        w.postMessage({ prefix, bits });
+      } catch {
+        solveHere(prefix).then((n) => resolve(done(n)));
+      }
+    });
+  };
+  return {
+    warm() { if (!pending) pending = make(); },
+    async take() {
+      let got = pending ? await pending : null;
+      pending = null;
+      if (!got || Date.now() - got.stamp > 15 * 60000) got = await make();
+      return got.value;
+    },
+    harder(b) { if (b && b !== bits) { bits = b; pending = null; } },
+  };
+})();
+["wl-email", "message"].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) ["focus", "input"].forEach((t) => el.addEventListener(t, () => POW.warm(), { once: true }));
+});          // yyyy-mm-dd, the visitor's own day
 const params = new URLSearchParams(location.search);
 // Where a visitor came from: ?ref= / ?utm_source= first (Instagram's in-app browser sends no
 // referrer), else the referring site, else "direct". Only a short name ever leaves the page.
@@ -263,8 +330,11 @@ const CURRENCY = (() => {
     send.disabled = true; send.textContent = "Joining…";
     try {
       let r;
+      const postIt = async () => { body.set("pow", await POW.take()); return fetch(ENDPOINT, { method: "POST", body }); };
       try {
-        r = await fetch(ENDPOINT, { method: "POST", body });
+        r = await postIt();
+        const peek = await r.clone().json().catch(() => null);
+        if (peek && peek.error === "proof") { POW.harder(peek.bits); r = await postIt(); }
       } catch {
         // The reply could not be read (a browser quirk) or the network is down. Send it the way
         // the feedback form does: delivered if online, just without the place in line.
@@ -275,6 +345,7 @@ const CURRENCY = (() => {
       }
       let d = null;
       try { d = await r.json(); } catch { /* an old backend answers in plain text */ }
+      if (d && d.error === "proof") d = { error: "busy" };
       if (d && d.ok) { token = d.token || ""; showCount(d.waitlist); joined(d.position, d.already); }
       else if (d && d.error === "email") { $("wl-err").hidden = false; email.focus(); }
       else if (d && d.error === "busy") { status.classList.add("bad"); status.textContent = "Lots of people at once. Try again in a minute."; }
