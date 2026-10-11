@@ -120,11 +120,12 @@ document.documentElement.classList.add("js");
     addEventListener("pointermove", (e) => { px = e.clientX; py = e.clientY; if (!queued) { queued = true; requestAnimationFrame(look); } });
     setInterval(() => { face.classList.add("blink"); setTimeout(() => face.classList.remove("blink"), 200); }, 4000);
   }
-  // Each pair is a real turn: what was said, and Rubidu's answer (from the app, 2026-10-08).
+  // Each pair is a real turn: what was said, and Rubidu's answer (lines from the app, 2026-10-11).
   const talk = [
-    ["you", "mujhe ek joke sunao"], ["rubidu", "Why don't skeletons fight each other? They don't have the guts."],
+    ["you", "tell me a joke"], ["rubidu", "Why don't skeletons fight each other? They don't have the guts."],
+    ["you", "start a focus session"], ["rubidu", "Focus session started: 25 minutes. I'll tell you when it's break time."],
     ["you", "I got the job today!"], ["rubidu", "Oh, that's amazing! You must be so excited."],
-    ["you", "who won the last cricket world cup"], ["rubidu", "Do you want me to search the web for that?"],
+    ["you", "roast my mac"], ["rubidu", "You have 14 apps open. Your Mac is doing the work of a small office."],
     ["you", "find my resume pdf"], ["rubidu", "Here's your resume, in Downloads."],
   ];
   const bubble = document.querySelector(".bubble");
@@ -363,7 +364,7 @@ const CURRENCY = (() => {
     const more = ev.currentTarget, st = $("wl-more-status");
     const pick = (name) => [...more.querySelectorAll(`input[name=${name}]:checked`)].map((i) => i.value).join(",");
     const body = new URLSearchParams({ kind: "waitlist_more", token, mac: pick("mac"), uses: pick("uses"), pay: pick("pay"),
-      currency: (RUBIDU.prices || {})[CURRENCY] ? CURRENCY : "INR" });
+      currency: (RUBIDU.prices || {})[CURRENCY] ? CURRENCY : "USD" });
     if (!body.get("mac") && !body.get("uses") && !body.get("pay")) { st.textContent = "Tap an answer or two first."; return; }
     $("wl-more-send").disabled = true;
     try {
