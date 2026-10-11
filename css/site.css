@@ -1,11 +1,12 @@
-/* Rubidu: light by default, dark with the system. One accent: the smile's coral.
+/* Rubidu: light by default, dark with the system. One accent: violet; pink for the smile.
    Shapes: pills for buttons and chips, 22px for cards, 12px for fields. */
 :root {
-  /* Rubidu's warm look (2026-10-11), the same as the app's: cream, white, tomato-coral.
-     Contrast: ink 15:1, muted 6:1, links 4.9:1 on cream, white on the accent 5.1:1. */
-  --bg: #fff8f0; --surface: #ffffff; --sunk: #f7eadb; --ink: #2b2118; --muted: #6e5c4e;
-  --line: rgba(43, 33, 24, .1); --accent: #c4401d; --accent-soft: #fbe3d9; --on-accent: #ffffff;
-  --smile: #ff7a57; --ring: #2b2118; --shadow: 0 18px 50px -24px rgba(110, 60, 25, .32);
+  /* Rubidu's look since rc.16 (ADR-036), the same as the app's: cool grey and white, a violet
+     accent, the personality colours for fun. Contrast: ink 16:1, muted 5.6:1 on the sunk grey,
+     links 6.3:1, white on the accent 6.7:1; dark: ink 15.7:1, muted 6.8:1, accent 5.9:1. */
+  --bg: #f6f7fa; --surface: #ffffff; --sunk: #eef0f5; --ink: #14151b; --muted: #5b5f6e;
+  --line: rgba(20, 21, 27, .1); --accent: #5b3fd9; --accent-soft: #e9e5fb; --on-accent: #ffffff;
+  --smile: #f2479b; --ring: #14151b; --shadow: 0 18px 50px -24px rgba(20, 21, 40, .28);
   --display: "Bricolage Grotesque", system-ui, sans-serif;
   --body: "Hanken Grotesk", system-ui, sans-serif;
   --mono: "Geist Mono", ui-monospace, monospace;
@@ -13,15 +14,15 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1f1a16; --surface: #2b241f; --sunk: #352c26; --ink: #f6ede4; --muted: #b9a797;
-    --line: rgba(246, 237, 228, .1); --accent: #ff7a57; --accent-soft: #4a2a1f; --on-accent: #2a1408;
-    --ring: #f6ede4; --shadow: 0 18px 50px -24px rgba(0, 0, 0, .6);
+    --bg: #15161c; --surface: #1f2028; --sunk: #24252e; --ink: #edeff5; --muted: #a3a7b5;
+    --line: rgba(237, 239, 245, .1); --accent: #9d8cff; --accent-soft: #2b2550; --on-accent: #15161c;
+    --ring: #edeff5; --shadow: 0 18px 50px -24px rgba(0, 0, 0, .6);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1f1a16; --surface: #2b241f; --sunk: #352c26; --ink: #f6ede4; --muted: #b9a797;
-  --line: rgba(246, 237, 228, .1); --accent: #ff7a57; --accent-soft: #4a2a1f; --on-accent: #2a1408;
-  --ring: #f6ede4; --shadow: 0 18px 50px -24px rgba(0, 0, 0, .6);
+  --bg: #15161c; --surface: #1f2028; --sunk: #24252e; --ink: #edeff5; --muted: #a3a7b5;
+  --line: rgba(237, 239, 245, .1); --accent: #9d8cff; --accent-soft: #2b2550; --on-accent: #15161c;
+  --ring: #edeff5; --shadow: 0 18px 50px -24px rgba(0, 0, 0, .6);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -246,10 +247,10 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .wl-card { --wl-ink: #eef2f4; --wl-muted: #a3adb7; --wl-line: rgba(238, 242, 244, .14); position: relative; isolation: isolate;
   display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 5vw, 64px); align-items: start;
   padding: clamp(26px, 5vw, 56px); border-radius: calc(var(--r) + 8px); color: var(--wl-ink);
-  background: radial-gradient(120% 90% at 100% 0%, rgba(255, 122, 87, .22), transparent 55%),
-              radial-gradient(90% 70% at 0% 100%, rgba(245, 165, 36, .12), transparent 60%), #241c17; }
+  background: radial-gradient(120% 90% at 100% 0%, rgba(242, 71, 155, .22), transparent 55%),
+              radial-gradient(90% 70% at 0% 100%, rgba(157, 140, 255, .14), transparent 60%), #1c1d26; }
 .wl-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: -1;
-  background: conic-gradient(from var(--a, 0deg), transparent 0 60%, rgba(255, 122, 87, .9) 75%, transparent 90%);
+  background: conic-gradient(from var(--a, 0deg), transparent 0 60%, rgba(157, 140, 255, .9) 75%, transparent 90%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); animation: wl-spin 9s linear infinite; }
 @property --a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
@@ -259,9 +260,9 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .wl-card a { color: var(--smile); }
 .kicker { display: inline-flex; align-items: center; gap: 10px; font: 600 .82rem var(--mono); letter-spacing: .12em;
   text-transform: uppercase; color: var(--smile); margin-bottom: 18px; }
-.kicker-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--smile); box-shadow: 0 0 0 0 rgba(255, 122, 87, .6);
+.kicker-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--smile); box-shadow: 0 0 0 0 rgba(242, 71, 155, .6);
   animation: wl-pulse 2s infinite; }
-@keyframes wl-pulse { 70% { box-shadow: 0 0 0 10px rgba(255, 122, 87, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 122, 87, 0); } }
+@keyframes wl-pulse { 70% { box-shadow: 0 0 0 10px rgba(242, 71, 155, 0); } 100% { box-shadow: 0 0 0 0 rgba(242, 71, 155, 0); } }
 .wl-next-h { font: 600 .8rem var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--wl-muted); margin: 26px 0 10px; }
 .wl-next { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
 .wl-next li { padding: 6px 13px; border-radius: 999px; border: 1px solid var(--wl-line); font-size: .92rem; color: var(--wl-ink); }
@@ -273,8 +274,8 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .wl-row input { flex: 1; min-width: 0; font: inherit; font-size: 1.05rem; color: var(--wl-ink, var(--ink)); padding: 14px 18px; border-radius: 999px;
   background: rgba(255, 255, 255, .07); border: 1.5px solid var(--wl-line, var(--line)); }
 .wl-row input::placeholder { color: #7d8894; }
-.wl-row input:focus { outline: none; border-color: var(--smile); box-shadow: 0 0 0 4px rgba(255, 122, 87, .18); }
-.wl-card .btn-primary { background: var(--smile); color: #07211d; }
+.wl-row input:focus { outline: none; border-color: var(--smile); box-shadow: 0 0 0 4px rgba(242, 71, 155, .18); }
+.wl-card .btn-primary { background: var(--smile); color: #14151b; }
 .wl-check { display: flex; gap: 10px; align-items: center; margin: 16px 0 10px; cursor: pointer; font-size: .97rem; }
 .wl-check input { width: 18px; height: 18px; accent-color: var(--smile); }
 .wl-card .error { color: #fdba74; }
@@ -293,7 +294,7 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .wl-q { margin-bottom: 18px; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .wl-card .choice span { border-color: var(--wl-line); color: var(--wl-ink); padding: 8px 14px; }
-.wl-card .choice input:checked + span { border-color: var(--smile); background: rgba(255, 122, 87, .16); color: #fff; }
+.wl-card .choice input:checked + span { border-color: var(--smile); background: rgba(242, 71, 155, .16); color: #fff; }
 .wl-share { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--wl-line); display: flex; gap: 14px; align-items: center;
   flex-wrap: wrap; justify-content: space-between; }
 .wl-share p { margin: 0; color: var(--wl-muted); }
@@ -306,8 +307,8 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 
 /* the button that follows you down the page */
 .wl-pill { position: fixed; z-index: 25; right: 22px; bottom: 22px; display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 20px 12px 16px; border-radius: 999px; background: #241c17; color: #eef2f4; text-decoration: none; font-weight: 600;
-  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 122, 87, .35);
+  padding: 12px 20px 12px 16px; border-radius: 999px; background: #1c1d26; color: #eef2f4; text-decoration: none; font-weight: 600;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .55), 0 0 0 1px rgba(242, 71, 155, .35);
   transform: translateY(160%); opacity: 0; transition: transform .45s var(--ease), opacity .3s; }
 .wl-pill .brand-face { color: var(--smile); }
 .wl-pill.show { transform: none; opacity: 1; }
@@ -341,3 +342,11 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 @media (max-width: 640px) { .st-tiles { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { .wl-card::before { animation: none; } }
 .wl-form #wl-promise { margin-top: 14px; }
+
+/* Personalities and the Settings window (rc.16 screenshots) */
+.people .people-head { max-width: 62ch; margin-bottom: 28px; }
+.people-shot { margin: 0; }
+.people-shot img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.people-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 32px 48px; align-items: center; margin-top: 56px; }
+.people-copy h3 { margin: 0 0 10px; }
+@media (max-width: 760px) { .people-row { grid-template-columns: 1fr; margin-top: 36px; } }
