@@ -47,7 +47,7 @@ macOS asks you to confirm it once the first time you open it ([how, with picture
 [A private Siri alternative for Mac](https://ujjwal-ismyname.github.io/rubidu/siri-alternative-mac.html) ·
 [A voice assistant for work](https://ujjwal-ismyname.github.io/rubidu/ai-voice-assistant-for-work-on-mac.html) ·
 [How students use it](https://ujjwal-ismyname.github.io/rubidu/ai-assistant-for-students.html) ·
-[Terms and refunds](https://ujjwal-ismyname.github.io/rubidu/terms-and-refunds.html)
+[Terms](https://ujjwal-ismyname.github.io/rubidu/terms.html)
 
 ## Contact
 
