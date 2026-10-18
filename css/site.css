@@ -350,3 +350,10 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .people-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 32px 48px; align-items: center; margin-top: 56px; }
 .people-copy h3 { margin: 0 0 10px; }
 @media (max-width: 760px) { .people-row { grid-template-columns: 1fr; margin-top: 36px; } }
+
+/* Demo video */
+.demo .demo-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; margin: 24px 0 12px; background: #000; }
+.demo .demo-frame iframe, .demo .demo-play img { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.demo .demo-play { all: unset; cursor: pointer; position: absolute; inset: 0; }
+.demo .demo-play:focus-visible { outline: 3px solid currentColor; outline-offset: -3px; }
+.demo .demo-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; color: #fff; background: rgba(0, 0, 0, .65); }

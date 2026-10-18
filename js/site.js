@@ -398,3 +398,15 @@ const CURRENCY = (() => {
   }, { threshold: 0 });
   [".hero", "#waitlist", "#feedback", ".footer"].forEach((q) => { const el = document.querySelector(q); if (el) io.observe(el); });
 })();
+
+// Demo video: YouTube (no-cookie) loads only after the visitor presses play.
+document.querySelectorAll(".demo-frame").forEach((box) => {
+  box.querySelector(".demo-play")?.addEventListener("click", () => {
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(box.dataset.youtube)}?autoplay=1&rel=0`;
+    f.title = "Rubidu demo video";
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    box.replaceChildren(f);
+  });
+});
