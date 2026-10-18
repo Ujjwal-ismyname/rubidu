@@ -176,6 +176,7 @@ section { padding: clamp(56px, 9vw, 112px) 0; }
 .todo-group { background: var(--surface); border: 1px dashed color-mix(in srgb, var(--ink) 25%, transparent); border-radius: var(--r); padding: 24px; }
 .todo-group ul { margin: 0; padding-left: 1.1em; color: var(--muted); } .todo-group li { margin: .4em 0; }
 @media (max-width: 760px) { .todo { grid-template-columns: 1fr; } }
+.why-card { border-style: solid; } .why-card h3 { margin-top: 0; } .why-card p { margin: 0; color: var(--muted); }
 
 /* questions */
 .qas { margin-top: 24px; }
