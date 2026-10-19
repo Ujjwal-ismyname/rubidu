@@ -23,15 +23,15 @@
 <main class="wrap narrow prose" style="padding-block:64px 96px">
   <p><a href="./">← Rubidu</a></p>
   <h1>Is Rubidu safe for my Mac?</h1>
-  <p>A voice assistant that listens all day should be gentle on the machine. These are measurements from one MacBook Air M2 with 16 GB, over about 500 readings of Rubidu running as normal.</p>
+  <p>A voice assistant that listens all day should be gentle on the machine. These are measurements from one MacBook Air M2 with 16 GB: 7,069 readings, every 3 seconds over almost 8 hours of Rubidu running as normal on 19 and 20 October 2026.</p>
 
   <p><a class="btn btn-primary" href="./#waitlist">Join the waitlist</a></p>
   <h2>What it uses</h2>
   <ul>
-    <li><strong>Waiting for you:</strong> about a tenth of one processor core, and about 0.7 GB of memory on average.</li>
-    <li><strong>While you talk:</strong> a quarter of one core on average, peaking higher for a moment, and up to about 1.7 GB of memory.</li>
-    <li><strong>Speech recognition:</strong> the graphics chip goes to full for about half a second per sentence you say, then drops back. An option in Settings moves recognition to the processor so the graphics chip stays untouched (about 0.7 seconds slower).</li>
-    <li><strong>Heat:</strong> the Mac's temperature state stayed at nominal, the lowest level, for the whole measurement.</li>
+    <li><strong>Waiting for you:</strong> about 7% of one processor core on average, and about 0.45 GB of memory (what Activity Monitor shows) once the language model has been given back.</li>
+    <li><strong>While you talk:</strong> about 30% of one core on average, peaking higher for a moment, and up to about 2.2 GB of memory at the peak of an answer.</li>
+    <li><strong>Speech recognition:</strong> the graphics chip works for about a third of a second per sentence you say, then drops back. An option in Settings moves recognition to the processor so the graphics chip stays untouched (about 0.15 seconds slower for a short command).</li>
+    <li><strong>Heat:</strong> the Mac's temperature state was nominal, the lowest level, almost all of the time, and reached fair, the next level, at least once while software builds also ran on the same Mac. It never reached serious.</li>
   </ul>
   <h2>Are short bursts harmful?</h2>
   <p>No. A burst to full for a fraction of a second is ordinary, the same as scrolling a busy web page or opening a large photo. Apple silicon manages its own heat and slows itself down well before any damage could happen, and no app can push it past those limits. What shortens a laptop's life is long periods of heat, not brief load. Memory does not wear out from use. Rubidu keeps its log files small and rotates them, so it does not write large amounts to your disk.</p>
@@ -43,7 +43,7 @@
     <li>On battery, a microphone that listens all day uses some power; use Sleep in the menu bar when you don't need it.</li>
   </ul>
   <h2>Honest limits</h2>
-  <p>These numbers come from one Mac. Other Macs, especially with 8 GB of memory, will differ, and a larger optional model uses more. If something ever feels slow or warm, the Rubidu window shows what it is using.</p>
+  <p>These numbers come from one Mac with 16 GB of memory, the amount Rubidu needs. Other Macs will differ, and a larger optional model uses more. If something ever feels slow or warm, the Rubidu window shows what it is using.</p>
   <h2>Questions</h2>
   <h3>Will Rubidu drain my battery?</h3>
   <p>Listening costs some power, as any always-on microphone does. Use Sleep from the menu bar to switch listening off entirely, or hold the push-to-talk keys instead of using the wake word.</p>
