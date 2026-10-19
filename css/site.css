@@ -358,3 +358,7 @@ textarea:focus, select:focus, input:focus { border-color: var(--accent); outline
 .demo .demo-play { all: unset; cursor: pointer; position: absolute; inset: 0; }
 .demo .demo-play:focus-visible { outline: 3px solid currentColor; outline-offset: -3px; }
 .demo .demo-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; color: #fff; background: rgba(0, 0, 0, .65); }
+
+/* For acquirers */
+.acquirers .acq-list { margin: 16px 0; padding-left: 1.2em; line-height: 1.6; }
+.acquirers .acq-links { margin-top: 12px; }
